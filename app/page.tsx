@@ -18,7 +18,7 @@ export default function HomePage() {
           <span className="brand-name">Anushka</span>
         </div>
         <nav className="nav" aria-label="Main navigation">
-          <Link href="/">Atlas</Link>
+          <Link href="/atlas">Atlas</Link>
           <Link href="/work">Work</Link>
           <Link href="/questions">Questions</Link>
           <Link href="/notes">Notes</Link>
@@ -38,7 +38,7 @@ export default function HomePage() {
             problems, systems, contexts, and decisions that shape the work.
           </p>
           <div className="cta-row">
-            <Link href="/work" className="primary-button">Explore the atlas</Link>
+            <Link href="/atlas" className="primary-button">Explore the atlas</Link>
             <Link href="/collaborate" className="secondary-button">Start a conversation</Link>
           </div>
         </div>
