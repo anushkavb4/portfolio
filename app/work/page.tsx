@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { featuredProjects } from "@/data/atlas";
 
 export default function WorkPage() {
@@ -24,6 +25,9 @@ export default function WorkPage() {
                 <p>
                   <strong>Systems:</strong> {project.systems.join(" · ")}
                 </p>
+                <Link href={`/work/${project.slug}`} className="secondary-button">
+                  Open case study
+                </Link>
               </div>
             </article>
           ))}

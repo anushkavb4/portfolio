@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notes } from "@/data/atlas";
 
 export default function NotesPage() {
@@ -21,6 +22,9 @@ export default function NotesPage() {
                 <p>
                   <strong>Related project:</strong> {note.relatedProject}
                 </p>
+                <Link href={`/notes/${note.slug}`} className="secondary-button">
+                  Read note
+                </Link>
               </div>
             </article>
           ))}
