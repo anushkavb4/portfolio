@@ -36,6 +36,14 @@ export type ResearchQuestion = {
   unknowns: string[];
 };
 
+export type ProjectNote = {
+  slug: string;
+  title: string;
+  status: "draft" | "exploration" | "published";
+  summary: string;
+  relatedProject: string;
+};
+
 export const atlasNodes: AtlasNode[] = [
   {
     id: "problem-understanding",
@@ -141,9 +149,27 @@ export const researchQuestions: ResearchQuestion[] = [
   },
 ];
 
+export const notes: ProjectNote[] = [
+  {
+    slug: "designing-trustworthy-interfaces",
+    title: "Designing trustworthy interfaces",
+    status: "published",
+    summary: "Early notes on how explanation, visibility, and trust interact in operational systems.",
+    relatedProject: "knowledge-interfaces",
+  },
+  {
+    slug: "systems-as-constraints",
+    title: "Systems as constraints",
+    status: "exploration",
+    summary: "A working note on how infrastructure choices shape the actions available to a team.",
+    relatedProject: "research-operations",
+  },
+];
+
 export const portfolioContent = {
   atlasNodes,
   atlasEdges,
   projects: featuredProjects,
   questions: researchQuestions,
+  notes,
 };
