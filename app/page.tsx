@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { atlasNodes, researchQuestions, featuredProjects } from "@/data/atlas";
+import { AtlasMap } from "@/components/atlas/AtlasMap";
+import { researchQuestions, featuredProjects } from "@/data/atlas";
 
 const pillars = [
   { label: "Research questions", value: "Human + computational systems" },
@@ -47,18 +48,7 @@ export default function HomePage() {
             <span className="panel-label">Research atlas</span>
             <span className="status-dot">Live</span>
           </div>
-          <div className="node-grid">
-            {atlasNodes.map((node) => (
-              <div key={node.id} className={`node ${node.kind}`}>
-                {node.label}
-              </div>
-            ))}
-          </div>
-          <div className="panel-lines" aria-hidden="true">
-            <span className="line line-one" />
-            <span className="line line-two" />
-            <span className="line line-three" />
-          </div>
+          <AtlasMap />
         </div>
       </section>
 

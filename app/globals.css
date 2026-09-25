@@ -155,6 +155,119 @@ a {
   box-shadow: 0 24px 40px var(--shadow);
 }
 
+.atlas-shell {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.atlas-visual {
+  position: relative;
+  min-height: 320px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.atlas-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border: 1px solid var(--line);
+  padding: 0.8rem 0.9rem;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.8rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  min-width: 132px;
+  text-align: center;
+}
+
+.atlas-node:hover,
+.atlas-node:focus-visible,
+.atlas-node.selected {
+  border-color: var(--accent);
+  box-shadow: 0 10px 20px rgba(185, 72, 45, 0.12);
+  transform: translate(-50%, -50%) scale(1.02);
+}
+
+.atlas-node.problem {
+  background: rgba(185, 72, 45, 0.08);
+}
+
+.atlas-node.system {
+  background: rgba(34, 53, 88, 0.06);
+}
+
+.atlas-node.context {
+  background: rgba(90, 72, 42, 0.08);
+}
+
+.atlas-node.project {
+  background: rgba(55, 86, 74, 0.08);
+}
+
+.atlas-node.question {
+  background: rgba(120, 95, 74, 0.08);
+}
+
+.atlas-connector {
+  position: absolute;
+  display: block;
+  background: rgba(29, 27, 26, 0.18);
+}
+
+.connector-a {
+  left: 20%;
+  top: 28%;
+  width: 18%;
+  height: 1px;
+}
+
+.connector-b {
+  left: 42%;
+  top: 18%;
+  width: 24%;
+  height: 1px;
+}
+
+.connector-c {
+  left: 54%;
+  top: 44%;
+  width: 1px;
+  height: 26%;
+}
+
+.connector-d {
+  left: 28%;
+  top: 64%;
+  width: 28%;
+  height: 1px;
+}
+
+.atlas-insight {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.18);
+  padding: 1rem 1rem 0.8rem;
+}
+
+.atlas-insight h3 {
+  margin: 0.2rem 0 0.4rem;
+  font-size: 1.2rem;
+}
+
+.atlas-insight p,
+.atlas-insight li {
+  color: var(--muted);
+}
+
+.atlas-insight ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+}
+
 .panel-header {
   display: flex;
   align-items: center;
