@@ -20,6 +20,7 @@ export default function HomePage() {
           <Link href="/">Atlas</Link>
           <Link href="/work">Work</Link>
           <Link href="/questions">Questions</Link>
+          <Link href="/notes">Notes</Link>
           <Link href="/collaborate">Collaborate</Link>
         </nav>
       </header>

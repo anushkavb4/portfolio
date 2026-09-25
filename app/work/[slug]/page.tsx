@@ -2,8 +2,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { featuredProjects } from "@/data/atlas";
 
-export default function WorkDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const project = featuredProjects.find((item) => item.slug === (async () => (await params).slug)());
+export default async function WorkDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const project = featuredProjects.find((item) => item.slug === slug);
 
   if (!project) {
     notFound();
