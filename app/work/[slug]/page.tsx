@@ -50,11 +50,28 @@ export default async function WorkDetailPage({
           <p>
             <strong>Technologies:</strong> {project.technologies.join(" · ")}
           </p>
-          <Link href="/work" className="secondary-button">
-            Back to work
-          </Link>
+          <p>
+            <strong>Outcome:</strong> {project.outcome}
+          </p>
+          <div className="project-links">
+            <Link href="/work" className="secondary-button">
+              Back to work
+            </Link>
+            {project.links.map((link) => (
+              <Link
+                key={link.label}
+                href={link.url}
+                className="secondary-button"
+                target={link.url.startsWith("http") ? "_blank" : undefined}
+                rel={link.url.startsWith("http") ? "noreferrer" : undefined}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
 
+        <SectionBlock eyebrow="Summary" title="Case summary" body={project.summary} />
         <SectionBlock eyebrow="Problem" title="The problem" body={projectStory.problem} />
         <SectionBlock eyebrow="Context" title="Context and stakeholders" body={projectStory.context} />
         <SectionBlock eyebrow="Workflow" title="Original workflow" body={projectStory.workflow} />

@@ -22,6 +22,9 @@ export type PortfolioProject = {
   contexts: string[];
   systems: string[];
   technologies: string[];
+  summary: string;
+  outcome: string;
+  links: { label: string; url: string }[];
   featured: boolean;
   order: number;
 };
@@ -99,6 +102,14 @@ export const featuredProjects: PortfolioProject[] = [
     contexts: ["Research labs", "International teams", "Public-sector settings"],
     systems: ["infrastructure", "software", "data workflows"],
     technologies: ["Python", "FastAPI", "visualisation"],
+    summary:
+      "A decision-support effort focused on making operational choices more legible, explainable, and responsive to real-world uncertainty.",
+    outcome:
+      "Created more transparent operational workflows and clearer decision pathways across teams working under non-trivial constraints.",
+    links: [
+      { label: "Case study", url: "/work/decision-support" },
+      { label: "Repository", url: "https://github.com" },
+    ],
     featured: true,
     order: 1,
   },
@@ -111,6 +122,14 @@ export const featuredProjects: PortfolioProject[] = [
     contexts: ["Cross-disciplinary collaboration", "Academic research"],
     systems: ["interfaces", "models", "human factors"],
     technologies: ["TypeScript", "React", "Design systems"],
+    summary:
+      "Explored how people navigate unfamiliar technical systems when the underlying model is uncertain or opaque.",
+    outcome:
+      "Produced interface patterns that improved interpretability, idea flow, and collaborative reasoning in technical environments.",
+    links: [
+      { label: "Case study", url: "/work/knowledge-interfaces" },
+      { label: "Research note", url: "/notes/designing-trustworthy-interfaces" },
+    ],
     featured: true,
     order: 2,
   },
@@ -123,6 +142,14 @@ export const featuredProjects: PortfolioProject[] = [
     contexts: ["Research institutions", "Product teams"],
     systems: ["workflow design", "platform engineering", "quality assurance"],
     technologies: ["Next.js", "Python", "automation"],
+    summary:
+      "A systems-focused operational toolkit intended to help research and delivery teams move from experimentation to repeatable practice.",
+    outcome:
+      "Improved visibility into process structure, handoffs, and decision quality without over-automating the human layer.",
+    links: [
+      { label: "Case study", url: "/work/research-operations" },
+      { label: "Note", url: "/notes/systems-as-constraints" },
+    ],
     featured: false,
     order: 3,
   },
