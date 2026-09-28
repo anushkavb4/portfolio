@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AtlasMap } from "@/components/atlas/AtlasMap";
 import { researchQuestions, featuredProjects } from "@/data/atlas";
+import { profile } from "@/data/profile";
 
 const pillars = [
   { label: "Research questions", value: "Human + computational systems" },
@@ -15,7 +16,7 @@ export default function HomePage() {
       <header className="topbar">
         <div className="brand-block">
           <span className="eyebrow">Research Atlas</span>
-          <span className="brand-name">Anushka</span>
+          <span className="brand-name">{profile.name}</span>
         </div>
         <nav className="nav" aria-label="Main navigation">
           <Link href="/atlas">Atlas</Link>
@@ -30,8 +31,7 @@ export default function HomePage() {
         <div className="hero-copy">
           <p className="kicker">Portfolio / research identity</p>
           <h1>
-            I explore how computational systems can help us understand, support, and build
-            things in the real world.
+            {profile.title}
           </h1>
           <p className="lede">
             This portfolio is designed as a living research atlas: a practical map of the
