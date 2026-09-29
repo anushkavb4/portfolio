@@ -383,7 +383,8 @@ h1, h2, h3, h4 {
 }
 
 .question-list,
-.pillars-grid {
+.pillars-grid,
+.trajectory-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
@@ -391,7 +392,9 @@ h1, h2, h3, h4 {
 
 .question-card,
 .pillar-card,
-.collab-panel {
+.collab-panel,
+.trajectory-card,
+.search-panel {
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.22);
   padding: 22px;
@@ -441,6 +444,117 @@ h1, h2, h3, h4 {
   align-items: center;
   justify-content: space-between;
   gap: 28px;
+}
+
+.trajectory-card {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.4rem 1.2rem;
+}
+
+.trajectory-step {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.28);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+.trajectory-card h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.trajectory-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.search-panel {
+  display: grid;
+  gap: 0.55rem;
+  margin-bottom: 1.1rem;
+}
+
+.search-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.search-input {
+  width: min(520px, 100%);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.4);
+  color: var(--text);
+  padding: 0.9rem 1rem;
+  font: inherit;
+}
+
+.search-input:focus {
+  outline: 2px solid rgba(185, 72, 45, 0.3);
+  outline-offset: 2px;
+}
+
+.empty-state {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.22);
+  padding: 2rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.empty-state h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 2vw, 2.6rem);
+}
+
+.empty-state p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.project-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.status-badge,
+.meta-label {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.28rem 0.6rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.status-badge {
+  background: rgba(185, 72, 45, 0.08);
+  color: var(--text);
+}
+
+.meta-label {
+  color: var(--muted);
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
 
 .detail-section {

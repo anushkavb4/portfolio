@@ -15,6 +15,13 @@ export const atlasEdgeSchema = z.object({
   type: z.enum(["informs", "implemented-in", "constrained-by", "raises-question-about"]),
 });
 
+export const projectSectionSchema = z.object({
+  eyebrow: z.string().min(1),
+  title: z.string().min(1),
+  body: z.string().min(1),
+  bullets: z.array(z.string().min(1)).optional(),
+});
+
 export const projectSchema = z.object({
   slug: z.string().min(1),
   name: z.string().min(1),
@@ -24,6 +31,9 @@ export const projectSchema = z.object({
   contexts: z.array(z.string()).default([]),
   systems: z.array(z.string()).default([]),
   technologies: z.array(z.string()).default([]),
+  summary: z.string().min(1),
+  outcome: z.string().min(1),
+  caseStudy: z.array(projectSectionSchema).min(1),
   featured: z.boolean().default(false),
   order: z.number().int().nonnegative(),
 });

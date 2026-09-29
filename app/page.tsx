@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AtlasMap } from "@/components/atlas/AtlasMap";
-import { researchQuestions, featuredProjects } from "@/data/atlas";
+import { researchQuestions, featuredProjects, contextTrajectory } from "@/data/atlas";
 import { profile } from "@/data/profile";
 
 const pillars = [
@@ -95,6 +95,23 @@ export default function HomePage() {
                 <h3>{project.name}</h3>
                 <p>{project.shortTitle}</p>
               </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section" id="trajectory">
+        <div className="section-heading">
+          <p className="eyebrow">Context and trajectory</p>
+          <h2>How the work moves across settings</h2>
+        </div>
+        <div className="trajectory-grid">
+          {contextTrajectory.map((item) => (
+            <article key={item.step} className="trajectory-card">
+              <span className="trajectory-step">{item.step}</span>
+              <h3>{item.context}</h3>
+              <p><strong>Question:</strong> {item.question}</p>
+              <p><strong>Outcome:</strong> {item.outcome}</p>
             </article>
           ))}
         </div>

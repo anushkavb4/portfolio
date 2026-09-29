@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { SectionBlock } from "@/components/content/SectionBlock";
 import { notes } from "@/data/atlas";
 
 export default async function NoteDetailPage({
@@ -31,10 +32,21 @@ export default async function NoteDetailPage({
           <p>
             <strong>Related project:</strong> {note.relatedProject}
           </p>
-          <Link href="/notes" className="secondary-button">
-            Back to notes
-          </Link>
+          <div className="project-links">
+            <Link href="/notes" className="secondary-button">
+              Back to notes
+            </Link>
+          </div>
         </div>
+
+        {note.sections.map((section) => (
+          <SectionBlock
+            key={section.title}
+            eyebrow={note.title}
+            title={section.title}
+            body={section.body}
+          />
+        ))}
       </section>
     </main>
   );
