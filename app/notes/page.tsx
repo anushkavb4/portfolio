@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notes } from "@/data/atlas";
+import { featuredProjects, notes } from "@/data/resume-atlas";
 
 export default function NotesPage() {
   return (
@@ -9,32 +9,42 @@ export default function NotesPage() {
           <span className="eyebrow">Notes</span>
           <span className="brand-name">Working observations</span>
         </div>
+        <nav className="nav" aria-label="Notes navigation">
+          <Link href="/search">Search</Link>
+        </nav>
       </header>
 
       <section className="section">
-        <div className="question-list">
-          {notes.map((note) => (
-            <article key={note.slug} className="question-card">
-              <span className="question-index">{note.status}</span>
-              <div>
-                <div className="project-meta-row">
-                  <span className="status-badge">{note.status}</span>
-                  <span className="meta-label">Related: {note.relatedProject}</span>
-                </div>
-                <h2>{note.title}</h2>
-                <p>{note.summary}</p>
-                <p>
-                  <strong>Related project:</strong> {note.relatedProject}
-                </p>
-                <div className="project-links">
-                  <Link href={`/notes/${note.slug}`} className="secondary-button">
-                    Read note
-                  </Link>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+        {notes.length === 0 ? (
+          <div className="empty-state"><h2>No notes published</h2><p>Project notes will appear here when available.</p></div>
+        ) : (
+          <div className="question-list">
+            {notes.map((note) => {
+              const project = featuredProjects.find((item) => item.slug === note.relatedProject);
+
+              return (
+                <article key={note.slug} className="question-card">
+                  <span className="question-index">{note.status}</span>
+                  <div>
+                    <div className="project-meta-row">
+                      <span className="status-badge">{note.status}</span>
+                      {project && <span className="meta-label">{project.category.replaceAll("-", " ")}</span>}
+                    </div>
+                    <h2>{note.title}</h2>
+                    <p>{note.summary}</p>
+                    <p>
+                      <strong>Related project:</strong>{" "}
+                      {project ? <Link href={`/work/${project.slug}`}>{project.name}</Link> : "No related project linked."}
+                    </p>
+                    <div className="project-links">
+                      <Link href={`/notes/${note.slug}`} className="secondary-button">Read note</Link>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        )}
       </section>
     </main>
   );

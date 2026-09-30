@@ -9,6 +9,9 @@ export default function CollaboratePage() {
           <span className="eyebrow">Collaborate</span>
           <span className="brand-name">Open to the next question</span>
         </div>
+        <nav className="nav" aria-label="Collaboration navigation">
+          <Link href="/search">Search</Link>
+        </nav>
       </header>
 
       <section className="section">
@@ -31,9 +34,11 @@ export default function CollaboratePage() {
             <Link href={profile.github} className="secondary-button" target="_blank" rel="noreferrer">
               GitHub
             </Link>
-            <Link href={profile.linkedin} className="secondary-button" target="_blank" rel="noreferrer">
-              LinkedIn
-            </Link>
+            {profile.linkedin && (
+              <Link href={profile.linkedin} className="secondary-button" target="_blank" rel="noreferrer">
+                LinkedIn
+              </Link>
+            )}
           </div>
         </div>
       </section>

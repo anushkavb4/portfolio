@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { atlasEdges, atlasNodes, featuredProjects, researchQuestions } from "@/data/atlas";
+import { atlasEdges, atlasNodes, featuredProjects, researchQuestions } from "@/data/resume-atlas";
 
 const kinds = ["all", "problem", "system", "context", "project", "question"] as const;
 
@@ -31,6 +31,7 @@ export default function AtlasPage() {
         </div>
         <nav className="nav" aria-label="Main navigation">
           <Link href="/">Home</Link>
+          <Link href="/search">Search</Link>
           <Link href="/work">Work</Link>
           <Link href="/questions">Questions</Link>
           <Link href="/notes">Notes</Link>
@@ -50,6 +51,7 @@ export default function AtlasPage() {
               key={kind}
               type="button"
               className={`filter-chip ${selectedKind === kind ? "active" : ""}`}
+              aria-pressed={selectedKind === kind}
               onClick={() => setSelectedKind(kind)}
             >
               {kind === "all" ? "All" : kind}
@@ -58,7 +60,7 @@ export default function AtlasPage() {
         </div>
 
         <div className="atlas-page-layout">
-          <div className="atlas-page-visual">
+          <div className="atlas-page-visual" aria-hidden="true">
             {visibleNodes.map((node, index) => (
               <div
                 key={node.id}
@@ -94,8 +96,9 @@ export default function AtlasPage() {
               <p className="eyebrow">Related projects</p>
               <ul>
                 {relatedProjects.map((project) => (
-                  <li key={project.slug}>{project.name}</li>
+                  <li key={project.slug}><Link href={`/work/${project.slug}`}>{project.name}</Link></li>
                 ))}
+                {relatedProjects.length === 0 && <li>No related projects for these nodes.</li>}
               </ul>
             </div>
 
@@ -103,12 +106,48 @@ export default function AtlasPage() {
               <p className="eyebrow">Related questions</p>
               <ul>
                 {relatedQuestions.map((question) => (
-                  <li key={question.slug}>{question.title}</li>
+                  <li key={question.slug}><Link href={`/questions#${question.slug}`}>{question.title}</Link></li>
                 ))}
+                {relatedQuestions.length === 0 && <li>No related questions for these nodes.</li>}
               </ul>
             </div>
           </aside>
         </div>
+
+        <details className="atlas-text-fallback">
+          <summary>Read the atlas as text</summary>
+          <ul>
+            {atlasNodes.map((node) => {
+              const relatedLabels = node.relatedSlugs.map((slug) => {
+                const project = featuredProjects.find((item) => item.slug === slug);
+                if (project) return project.name;
+
+                const question = researchQuestions.find((item) => item.slug === slug);
+                return question?.title ?? slug;
+              });
+
+              return (
+                <li key={node.id}>
+                  <strong>{node.label} ({node.kind}):</strong> {node.description}{" "}
+                  <span>Related: {relatedLabels.join("; ")}</span>
+                </li>
+              );
+            })}
+          </ul>
+          <h3>Connections</h3>
+          <ul>
+            {atlasEdges.map((edge) => {
+              const source = atlasNodes.find((node) => node.id === edge.source);
+              const target = atlasNodes.find((node) => node.id === edge.target);
+
+              return (
+                <li key={edge.id}>
+                  {source?.label} {edge.type.replaceAll("-", " ")} {target?.label}
+                </li>
+              );
+            })}
+          </ul>
+        </details>
       </section>
     </main>
   );

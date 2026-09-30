@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { atlasNodes } from "@/data/atlas";
+import Link from "next/link";
+import { atlasNodes, featuredProjects, researchQuestions } from "@/data/resume-atlas";
 
 const positions = [
   { left: "8%", top: "22%" },
@@ -18,10 +19,19 @@ export function AtlasMap() {
     () => atlasNodes.find((node) => node.id === selectedId) ?? atlasNodes[0],
     [selectedId],
   );
+  const relatedContent = selectedNode?.relatedSlugs.map((slug) => {
+    const project = featuredProjects.find((item) => item.slug === slug);
+    if (project) return { label: project.name, href: `/work/${project.slug}` };
+
+    const question = researchQuestions.find((item) => item.slug === slug);
+    if (question) return { label: question.title, href: `/questions#${question.slug}` };
+
+    return { label: slug, href: undefined };
+  }) ?? [];
 
   return (
     <div className="atlas-shell">
-      <div className="atlas-visual" aria-label="Interactive research atlas">
+      <div className="atlas-visual" role="group" aria-label="Interactive research atlas">
         {atlasNodes.map((node, index) => (
           <button
             key={node.id}
@@ -33,6 +43,7 @@ export function AtlasMap() {
             }}
             onClick={() => setSelectedId(node.id)}
             aria-pressed={selectedId === node.id}
+            aria-controls="atlas-insight"
           >
             {node.label}
           </button>
@@ -43,16 +54,18 @@ export function AtlasMap() {
         <div className="atlas-connector connector-d" aria-hidden="true" />
       </div>
 
-      <div className="atlas-insight">
+      <section className="atlas-insight" id="atlas-insight" aria-live="polite">
         <p className="eyebrow">Selected node</p>
         <h3>{selectedNode?.label}</h3>
         <p>{selectedNode?.description}</p>
         <ul>
-          {selectedNode?.relatedSlugs.map((slug) => (
-            <li key={slug}>{slug}</li>
+          {relatedContent.map((item) => (
+            <li key={item.label}>
+              {item.href ? <Link href={item.href}>{item.label}</Link> : item.label}
+            </li>
           ))}
         </ul>
-      </div>
+      </section>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AtlasMap } from "@/components/atlas/AtlasMap";
-import { researchQuestions, featuredProjects, contextTrajectory } from "@/data/atlas";
+import { researchQuestions, featuredProjects, contextTrajectory } from "@/data/resume-atlas";
 import { profile } from "@/data/profile";
 
 const pillars = [
@@ -20,6 +20,7 @@ export default function HomePage() {
         </div>
         <nav className="nav" aria-label="Main navigation">
           <Link href="/atlas">Atlas</Link>
+          <Link href="/search">Search</Link>
           <Link href="/work">Work</Link>
           <Link href="/questions">Questions</Link>
           <Link href="/notes">Notes</Link>
@@ -111,9 +112,33 @@ export default function HomePage() {
               <span className="trajectory-step">{item.step}</span>
               <h3>{item.context}</h3>
               <p><strong>Question:</strong> {item.question}</p>
+              <p><strong>Technical choices:</strong> {item.technicalChoices}</p>
               <p><strong>Outcome:</strong> {item.outcome}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="section" id="education">
+        <div className="section-heading">
+          <p className="eyebrow">Education and achievements</p>
+          <h2>Training and milestones</h2>
+        </div>
+        <div className="trajectory-grid">
+          <article className="trajectory-card">
+            <span className="trajectory-step">Education</span>
+            <h3>{profile.education.institution}</h3>
+            <p>{profile.education.degree}</p>
+            <p>{profile.education.location} · {profile.education.period} · CGPA {profile.education.cgpa}</p>
+          </article>
+          <article className="trajectory-card">
+            <span className="trajectory-step">Achievements</span>
+            <ul>
+              {profile.achievements.map((achievement) => (
+                <li key={achievement}>{achievement}</li>
+              ))}
+            </ul>
+          </article>
         </div>
       </section>
 

@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { featuredProjects } from "@/data/atlas";
+import { featuredProjects } from "@/data/resume-atlas";
 
-const filters = ["all", "decision-systems", "human-computer-interaction", "research-operations"] as const;
+const filters = ["all", "enterprise-ai", "platform-engineering", "machine-learning"] as const;
 
 export default function WorkPage() {
   const [query, setQuery] = useState("");
@@ -28,6 +28,9 @@ export default function WorkPage() {
           <span className="eyebrow">Work</span>
           <span className="brand-name">Selected projects</span>
         </div>
+        <nav className="nav" aria-label="Work navigation">
+          <Link href="/search">Search</Link>
+        </nav>
       </header>
 
       <section className="section">
@@ -78,6 +81,11 @@ export default function WorkPage() {
                   </div>
                   <h2>{project.name}</h2>
                   <p>{project.shortTitle}</p>
+                  <p>
+                    {[project.organization, project.role, project.period, project.location]
+                      .filter((value) => value !== "Not specified")
+                      .join(" · ")}
+                  </p>
                   <p>{project.summary}</p>
                   <p>
                     <strong>Systems:</strong> {project.systems.join(" · ")}
