@@ -4,16 +4,6 @@ import { profile } from "@/data/profile";
 export default function CollaboratePage() {
   return (
     <main className="page-shell">
-      <header className="topbar">
-        <div className="brand-block">
-          <span className="eyebrow">Collaborate</span>
-          <span className="brand-name">Open to the next question</span>
-        </div>
-        <nav className="nav" aria-label="Collaboration navigation">
-          <Link href="/search">Search</Link>
-        </nav>
-      </header>
-
       <section className="section">
         <div className="collab-panel" style={{ display: "grid", gap: "1rem" }}>
           <p>

@@ -24,21 +24,6 @@ export default function AtlasPage() {
 
   return (
     <main className="page-shell">
-      <header className="topbar">
-        <div className="brand-block">
-          <span className="eyebrow">Atlas</span>
-          <span className="brand-name">Research map</span>
-        </div>
-        <nav className="nav" aria-label="Main navigation">
-          <Link href="/">Home</Link>
-          <Link href="/search">Search</Link>
-          <Link href="/work">Work</Link>
-          <Link href="/questions">Questions</Link>
-          <Link href="/notes">Notes</Link>
-          <Link href="/collaborate">Collaborate</Link>
-        </nav>
-      </header>
-
       <section className="section">
         <div className="section-heading">
           <p className="eyebrow">Map of the work</p>

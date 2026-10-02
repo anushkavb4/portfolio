@@ -5,12 +5,23 @@ import {
   atlasEdges,
   atlasNodes,
   featuredProjects,
+  independentWork,
   notes,
+  professionalExperience,
   researchQuestions,
 } from "../data/resume-atlas";
 import { buildSearchIndex, filterSearchEntries, getSearchFacets } from "../lib/search";
 
 const entries = buildSearchIndex(featuredProjects, researchQuestions, notes);
+
+test("professional and independent projects form a complete, non-overlapping split", () => {
+  const groupedSlugs = [...professionalExperience, ...independentWork].map((project) => project.slug);
+
+  assert.equal(new Set(groupedSlugs).size, featuredProjects.length);
+  assert.deepEqual(new Set(groupedSlugs), new Set(featuredProjects.map((project) => project.slug)));
+  assert.ok(professionalExperience.every((project) => project.workType === "professional-experience"));
+  assert.ok(independentWork.every((project) => project.workType === "independent-work"));
+});
 
 test("content slugs and atlas relationships resolve", () => {
   const projectSlugs = new Set(featuredProjects.map((project) => project.slug));

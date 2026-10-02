@@ -4,16 +4,6 @@ import { featuredProjects, notes, researchQuestions } from "@/data/resume-atlas"
 export default function QuestionsPage() {
   return (
     <main className="page-shell">
-      <header className="topbar">
-        <div className="brand-block">
-          <span className="eyebrow">Questions</span>
-          <span className="brand-name">Research directions</span>
-        </div>
-        <nav className="nav" aria-label="Questions navigation">
-          <Link href="/search">Search</Link>
-        </nav>
-      </header>
-
       <section className="section">
         {researchQuestions.length === 0 ? (
           <div className="empty-state"><h2>No questions published</h2><p>Research questions will appear here when available.</p></div>

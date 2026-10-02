@@ -21,18 +21,23 @@ export default function WorkPage() {
     });
   }, [query, activeFilter]);
 
+  const projectGroups = [
+    {
+      id: "professional-experience",
+      title: "Professional experience",
+      description: "Work delivered in company and research-team roles.",
+      projects: visibleProjects.filter((project) => project.workType === "professional-experience"),
+    },
+    {
+      id: "independent-work",
+      title: "Independent projects & research",
+      description: "Personal builds, prototypes, and independent research.",
+      projects: visibleProjects.filter((project) => project.workType === "independent-work"),
+    },
+  ].filter((group) => group.projects.length > 0);
+
   return (
     <main className="page-shell">
-      <header className="topbar">
-        <div className="brand-block">
-          <span className="eyebrow">Work</span>
-          <span className="brand-name">Selected projects</span>
-        </div>
-        <nav className="nav" aria-label="Work navigation">
-          <Link href="/search">Search</Link>
-        </nav>
-      </header>
-
       <section className="section">
         <div className="search-panel">
           <label className="search-label" htmlFor="work-search">
@@ -70,44 +75,56 @@ export default function WorkPage() {
             </button>
           </div>
         ) : (
-          <div className="question-list">
-            {visibleProjects.map((project) => (
-              <article key={project.slug} className="question-card">
-                <span className="question-index">{project.order.toString().padStart(2, "0")}</span>
-                <div>
-                  <div className="project-meta-row">
-                    <span className="status-badge">{project.status}</span>
-                    <span className="meta-label">{project.category}</span>
+          <div className="work-groups">
+            {projectGroups.map((group) => (
+              <section className="work-group" key={group.id} aria-labelledby={`${group.id}-title`}>
+                <header className="work-group-heading">
+                  <div>
+                    <h2 id={`${group.id}-title`}>{group.title}</h2>
+                    <p>{group.description}</p>
                   </div>
-                  <h2>{project.name}</h2>
-                  <p>{project.shortTitle}</p>
-                  <p>
-                    {[project.organization, project.role, project.period, project.location]
-                      .filter((value) => value !== "Not specified")
-                      .join(" · ")}
-                  </p>
-                  <p>{project.summary}</p>
-                  <p>
-                    <strong>Systems:</strong> {project.systems.join(" · ")}
-                  </p>
-                  <div className="project-links">
-                    <Link href={`/work/${project.slug}`} className="secondary-button">
-                      Open case study
-                    </Link>
-                    {project.links.map((link) => (
-                      <Link
-                        key={link.label}
-                        href={link.url}
-                        className="secondary-button"
-                        target={link.url.startsWith("http") ? "_blank" : undefined}
-                        rel={link.url.startsWith("http") ? "noreferrer" : undefined}
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </div>
+                  <span>{group.projects.length} {group.projects.length === 1 ? "entry" : "entries"}</span>
+                </header>
+                <div className="question-list">
+                  {group.projects.map((project) => (
+                    <article key={project.slug} className="question-card">
+                      <div>
+                        <div className="project-meta-row">
+                          <span className="status-badge">{project.status}</span>
+                          <span className="meta-label">{project.category.replaceAll("-", " ")}</span>
+                        </div>
+                        <h3>{project.name}</h3>
+                        <p>{project.shortTitle}</p>
+                        <p>
+                          {[project.organization, project.role, project.period, project.location]
+                            .filter((value) => value !== "Not specified")
+                            .join(" · ")}
+                        </p>
+                        <p>{project.summary}</p>
+                        <p>
+                          <strong>Systems:</strong> {project.systems.join(" · ")}
+                        </p>
+                        <div className="project-links">
+                          <Link href={`/work/${project.slug}`} className="secondary-button">
+                            Open case study
+                          </Link>
+                          {project.links.map((link) => (
+                            <Link
+                              key={link.label}
+                              href={link.url}
+                              className="secondary-button"
+                              target={link.url.startsWith("http") ? "_blank" : undefined}
+                              rel={link.url.startsWith("http") ? "noreferrer" : undefined}
+                            >
+                              {link.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </article>
+                  ))}
                 </div>
-              </article>
+              </section>
             ))}
           </div>
         )}

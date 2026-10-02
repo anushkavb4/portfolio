@@ -4,16 +4,6 @@ import { featuredProjects, notes } from "@/data/resume-atlas";
 export default function NotesPage() {
   return (
     <main className="page-shell">
-      <header className="topbar">
-        <div className="brand-block">
-          <span className="eyebrow">Notes</span>
-          <span className="brand-name">Working observations</span>
-        </div>
-        <nav className="nav" aria-label="Notes navigation">
-          <Link href="/search">Search</Link>
-        </nav>
-      </header>
-
       <section className="section">
         {notes.length === 0 ? (
           <div className="empty-state"><h2>No notes published</h2><p>Project notes will appear here when available.</p></div>

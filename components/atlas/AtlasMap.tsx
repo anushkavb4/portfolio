@@ -5,7 +5,7 @@ import Link from "next/link";
 import { atlasNodes, featuredProjects, researchQuestions } from "@/data/resume-atlas";
 
 const positions = [
-  { left: "8%", top: "22%" },
+  { left: "18%", top: "39%" },
   { left: "38%", top: "10%" },
   { left: "66%", top: "24%" },
   { left: "52%", top: "64%" },

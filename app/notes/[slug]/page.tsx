@@ -22,16 +22,6 @@ export default async function NoteDetailPage({
 
   return (
     <main className="page-shell">
-      <header className="topbar">
-        <div className="brand-block">
-          <span className="eyebrow">Note</span>
-          <span className="brand-name">{note.title}</span>
-        </div>
-        <nav className="nav" aria-label="Note navigation">
-          <Link href="/search">Search</Link>
-        </nav>
-      </header>
-
       <section className="section">
         <div className="collab-panel" style={{ display: "grid", gap: "1rem" }}>
           <p className="kicker" style={{ margin: 0 }}>{note.status}</p>

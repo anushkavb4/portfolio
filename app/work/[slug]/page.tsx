@@ -22,16 +22,6 @@ export default async function WorkDetailPage({
 
   return (
     <main className="page-shell">
-      <header className="topbar">
-        <div className="brand-block">
-          <span className="eyebrow">Work detail</span>
-          <span className="brand-name">{project.name}</span>
-        </div>
-        <nav className="nav" aria-label="Project navigation">
-          <Link href="/search">Search</Link>
-        </nav>
-      </header>
-
       <section className="section">
         <div className="collab-panel" style={{ display: "grid", gap: "1rem" }}>
           <p className="kicker" style={{ margin: 0 }}>{project.category}</p>
@@ -70,7 +60,7 @@ export default async function WorkDetailPage({
               </Link>
             ))}
           </div>
-          <p>{project.disclosure}</p>
+          {project.disclosure && <p>{project.disclosure}</p>}
         </div>
 
         <SectionBlock eyebrow="Summary" title="Case summary" body={project.summary} />

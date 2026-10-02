@@ -37,17 +37,6 @@ export default function SearchExperience() {
 
   return (
     <main className="page-shell">
-      <header className="topbar">
-        <div className="brand-block">
-          <span className="eyebrow">Search</span>
-          <span className="brand-name">Explore the work</span>
-        </div>
-        <nav className="nav" aria-label="Search navigation">
-          <Link href="/">Home</Link>
-          <Link href="/work">Work</Link>
-        </nav>
-      </header>
-
       <section className="section" aria-labelledby="search-title">
         <div className="section-heading">
           <p className="eyebrow">Projects · Questions · Notes</p>

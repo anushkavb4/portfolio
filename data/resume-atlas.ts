@@ -31,6 +31,7 @@ export type PortfolioProject = {
   shortTitle: string;
   category: string;
   status: "selected-work" | "current-work" | "experimental" | "archive";
+  workType: "professional-experience" | "independent-work";
   organization: string;
   role: string;
   period: string;
@@ -40,7 +41,7 @@ export type PortfolioProject = {
   technologies: string[];
   summary: string;
   outcome: string;
-  disclosure: string;
+  disclosure?: string;
   workflow?: {
     caption: string;
     steps: WorkflowStep[];
@@ -128,9 +129,6 @@ export const atlasEdges: AtlasEdge[] = [
   { id: "e4", source: "applied-ml", target: "system-evaluation", type: "raises-question-about" },
 ];
 
-const resumeOnlyDisclosure =
-  "This public summary uses information from the supplied resume. No public repository or additional implementation details were supplied.";
-
 export const featuredProjects: PortfolioProject[] = [
   {
     slug: "ebrd-agentic-ai",
@@ -138,6 +136,7 @@ export const featuredProjects: PortfolioProject[] = [
     shortTitle: "Multi-agent orchestration and tool-augmented LLMs",
     category: "enterprise-ai",
     status: "current-work",
+    workType: "professional-experience",
     organization: "EBRD",
     role: "AI Engineer",
     period: "Jul 2026 – Present",
@@ -147,7 +146,6 @@ export const featuredProjects: PortfolioProject[] = [
     technologies: ["LLMs", "Multi-agent systems"],
     summary: "Building agentic AI solutions for enterprise workflows, including systems for complex knowledge retrieval and decision-making use cases.",
     outcome: "Automating complex knowledge retrieval and decision-making processes across institutional use cases.",
-    disclosure: resumeOnlyDisclosure,
     workflow: {
       caption: "High-level scope from the resume; internal architecture and handoffs were not provided.",
       steps: [
@@ -172,6 +170,7 @@ export const featuredProjects: PortfolioProject[] = [
     shortTitle: "Retrieval-augmented generation for institutional documents",
     category: "enterprise-ai",
     status: "selected-work",
+    workType: "professional-experience",
     organization: "EBRD",
     role: "AI Intern",
     period: "Aug 2025 – Feb 2026",
@@ -180,8 +179,7 @@ export const featuredProjects: PortfolioProject[] = [
     systems: ["RAG", "Semantic chunking", "Contextual compression", "Data extraction"],
     technologies: ["Azure OpenAI", "Azure AI Search", "LlamaIndex", "Streamlit"],
     summary: "Developed RAG systems for institutional documents and LLM-driven structured data extraction pipelines.",
-    outcome: "Processed 1,000+ documents at 95% extraction accuracy; semantic chunking and contextual compression reduced retrieval time by 30%.",
-    disclosure: resumeOnlyDisclosure,
+    outcome: "Built RAG and structured-extraction pipelines for institutional documents using semantic chunking and contextual compression.",
     workflow: {
       caption: "High-level flow assembled from resume-listed tasks and tools; component-level architecture was not supplied.",
       steps: [
@@ -194,7 +192,7 @@ export const featuredProjects: PortfolioProject[] = [
     caseStudy: [
       { eyebrow: "Context", title: "Institutional document workflows", body: "During an AI internship at EBRD in London, the work focused on retrieving information from institutional documents and extracting structured data." },
       { eyebrow: "Contribution", title: "RAG and extraction pipelines", body: "Developed systems using Azure OpenAI, Azure AI Search, LlamaIndex, and Streamlit. Proposed semantic chunking and contextual compression techniques." },
-      { eyebrow: "Outcome", title: "Measured pipeline improvements", body: "The resume reports processing 1,000+ documents with 95% extraction accuracy and a 30% reduction in retrieval time. Evaluation methodology and baseline details were not included." },
+      { eyebrow: "Outcome", title: "Pipeline improvements", body: "The source material describes improvements to extraction quality and retrieval time, but does not provide evaluation methodology or baselines." },
     ],
     links: [],
     featured: true,
@@ -206,6 +204,7 @@ export const featuredProjects: PortfolioProject[] = [
     shortTitle: "A job platform for particle physics simulation workflows",
     category: "platform-engineering",
     status: "selected-work",
+    workType: "professional-experience",
     organization: "CERN Openlab",
     role: "Technical Intern",
     period: "Jun 2025 – Aug 2025",
@@ -214,8 +213,7 @@ export const featuredProjects: PortfolioProject[] = [
     systems: ["Job submission", "Quotas", "Role-based access control", "Job monitoring"],
     technologies: ["Python", "FastAPI", "OpenAPI"],
     summary: "Built Gofer, a secure and scalable Synthesis-as-a-Service platform for particle physics simulation workflows.",
-    outcome: "OpenAPI integration tools and client libraries reduced onboarding time for new services by 40%; real-time job status tracking increased task submission success by 35%.",
-    disclosure: resumeOnlyDisclosure,
+    outcome: "OpenAPI integration tools and client libraries streamlined service onboarding, while real-time job status tracking improved task submission success.",
     workflow: {
       caption: "Operational sequence reconstructed from resume-listed platform features; internal service architecture was not supplied.",
       steps: [
@@ -228,7 +226,7 @@ export const featuredProjects: PortfolioProject[] = [
     caseStudy: [
       { eyebrow: "Context", title: "Simulation workflows at CERN Openlab", body: "Gofer supported particle physics simulation workflows during a technical internship at CERN Openlab in Geneva." },
       { eyebrow: "Contribution", title: "Platform, integrations, and job visibility", body: "Built the platform with Python and FastAPI, including user quotas, role-based access control, and job monitoring. Delivered OpenAPI-based integration tools and client libraries, and redesigned the web UI with real-time job status tracking." },
-      { eyebrow: "Outcome", title: "Onboarding and submission measures", body: "The resume reports 40% less onboarding time for new services and a 35% increase in task submission success rate. Deployment architecture and evaluation details were not supplied." },
+      { eyebrow: "Outcome", title: "Onboarding and submission improvements", body: "The source material associates the integration tools with easier onboarding and real-time status tracking with higher task submission success. Deployment architecture and evaluation details were not supplied." },
     ],
     links: [],
     featured: true,
@@ -240,6 +238,7 @@ export const featuredProjects: PortfolioProject[] = [
     shortTitle: "Platform engineering, voice integrations, and speech synthesis",
     category: "platform-engineering",
     status: "selected-work",
+    workType: "professional-experience",
     organization: "AIAssistant.co",
     role: "SDE Intern",
     period: "Feb 2024 – May 2025",
@@ -248,13 +247,12 @@ export const featuredProjects: PortfolioProject[] = [
     systems: ["REST APIs", "Text-to-speech", "Production services"],
     technologies: ["Python", "Flask", "FastAPI", "PostgreSQL"],
     summary: "Implemented product features, fixed production issues, optimized platform performance, and built REST APIs for voice assistant integrations.",
-    outcome: "Contributed to platform stability for 5,000+ users; voice API work improved response times by 35%, and TTS work improved naturalness by at least 30%.",
-    disclosure: resumeOnlyDisclosure,
+    outcome: "Contributed to platform stability, responsive voice APIs, and more natural text-to-speech output.",
     caseStudy: [
-      { eyebrow: "Context", title: "Production AI products", body: "Worked remotely with AIAssistant.co, a California-based organization, on AI-powered products used by more than 5,000 users." },
+      { eyebrow: "Context", title: "Production AI products", body: "Worked remotely with AIAssistant.co, a California-based organization, on deployed AI-powered products." },
       { eyebrow: "Contribution", title: "Product services and speech quality", body: "Implemented features and REST APIs for voice assistant integrations using Python, Flask, FastAPI, and PostgreSQL. Fine-tuned acoustic models and adjusted prosody and synthesis parameters for text-to-speech." },
       { eyebrow: "Architecture boundary", title: "Two contributions, not one asserted pipeline", body: "The resume lists voice assistant API work and TTS model tuning separately; it does not document how the API and speech-synthesis work were connected in production." },
-      { eyebrow: "Outcome", title: "Reported service and quality results", body: "The resume reports 35% faster system response times and at least 30% higher TTS naturalness. It does not provide the measurement protocols or public repository links." },
+      { eyebrow: "Outcome", title: "Service and speech-quality improvements", body: "The resume describes improved response times and TTS naturalness, but does not provide measurement protocols or public repository links." },
     ],
     links: [],
     featured: true,
@@ -263,9 +261,10 @@ export const featuredProjects: PortfolioProject[] = [
   {
     slug: "infosys-nlp",
     name: "Tweet classification for crisis management",
-    shortTitle: "NLP classification of more than 15,000 tweets",
+    shortTitle: "NLP classification for crisis management",
     category: "machine-learning",
     status: "selected-work",
+    workType: "professional-experience",
     organization: "Infosys Springboard Internship",
     role: "AI Intern",
     period: "May 2024 – Jul 2024",
@@ -273,22 +272,21 @@ export const featuredProjects: PortfolioProject[] = [
     contexts: ["Crisis management", "Social media", "Situational awareness"],
     systems: ["NLP classification", "Crisis response"],
     technologies: ["NLP", "Machine learning"],
-    summary: "Developed a machine learning model using NLP techniques to classify more than 15,000 tweets.",
-    outcome: "The resume reports a 40% improvement in crisis management team response time.",
-    disclosure: resumeOnlyDisclosure,
+    summary: "Developed an NLP-based machine-learning model to classify social media posts for crisis-management situational awareness.",
+    outcome: "Supported situational awareness for crisis-management teams.",
     workflow: {
       caption: "High-level workflow from the resume; model choice and evaluation method were not provided.",
       steps: [
-        { title: "Tweet data", detail: "More than 15,000 tweets" },
+        { title: "Social media posts", detail: "Source material for situational awareness" },
         { title: "NLP classification", detail: "Machine learning model classifies tweets" },
         { title: "Situational awareness", detail: "Classification supports crisis management teams" },
-        { title: "Response", detail: "Resume reports a 40% response-time improvement" },
+        { title: "Response", detail: "Classification supports crisis response" },
       ],
     },
     caseStudy: [
       { eyebrow: "Context", title: "Crisis management signals", body: "The internship project used tweet classification to support situational awareness for crisis management teams." },
-      { eyebrow: "Contribution", title: "NLP model development", body: "Developed a machine learning model leveraging NLP techniques to classify a dataset of more than 15,000 tweets." },
-      { eyebrow: "Outcome and limits", title: "Response-time claim", body: "The resume reports a 40% improvement in response time. It does not name the model, provide classification metrics, or explain the response-time measurement." },
+      { eyebrow: "Contribution", title: "NLP model development", body: "Developed a machine-learning model using NLP techniques to classify social media posts." },
+      { eyebrow: "Outcome and limits", title: "Situational awareness", body: "The classification work supported crisis-management response. The resume does not name the model or provide an evaluation method." },
     ],
     links: [],
     featured: true,
@@ -300,6 +298,7 @@ export const featuredProjects: PortfolioProject[] = [
     shortTitle: "Potato leaf disease detection research",
     category: "machine-learning",
     status: "selected-work",
+    workType: "independent-work",
     organization: "Published in Expert Systems with Applications",
     role: "Research project",
     period: "Not specified",
@@ -334,6 +333,7 @@ export const featuredProjects: PortfolioProject[] = [
     shortTitle: "Semantic segmentation on the CamVid dataset",
     category: "machine-learning",
     status: "selected-work",
+    workType: "independent-work",
     organization: "Independent project",
     role: "Research project",
     period: "Not specified",
@@ -368,6 +368,7 @@ export const featuredProjects: PortfolioProject[] = [
     shortTitle: "An end-to-end MIDI music generation pipeline",
     category: "machine-learning",
     status: "experimental",
+    workType: "independent-work",
     organization: "Independent project",
     role: "Project developer",
     period: "Not specified",
@@ -405,6 +406,7 @@ export const featuredProjects: PortfolioProject[] = [
     shortTitle: "Traceable extraction and deterministic clinical decision support",
     category: "enterprise-ai",
     status: "experimental",
+    workType: "independent-work",
     organization: "Independent prototype",
     role: "Repository contributor",
     period: "Not specified",
@@ -444,6 +446,7 @@ export const featuredProjects: PortfolioProject[] = [
     shortTitle: "A playlist recommendation prototype for two listeners",
     category: "machine-learning",
     status: "experimental",
+    workType: "independent-work",
     organization: "Independent project",
     role: "Repository author",
     period: "Not specified",
@@ -473,6 +476,14 @@ export const featuredProjects: PortfolioProject[] = [
     order: 10,
   },
 ];
+
+export const professionalExperience = featuredProjects.filter(
+  (project) => project.workType === "professional-experience",
+);
+
+export const independentWork = featuredProjects.filter(
+  (project) => project.workType === "independent-work",
+);
 
 export const researchQuestions: ResearchQuestion[] = [
   {
@@ -504,7 +515,7 @@ export const notes: ProjectNote[] = [
     relatedProject: "ebrd-rag",
     sections: [
       { title: "Pipeline scope", body: "The internship work covered RAG for institutional documents and LLM-driven structured data extraction, using Azure OpenAI, Azure AI Search, LlamaIndex, and Streamlit." },
-      { title: "Reported measures", body: "The resume reports 1,000+ documents processed at 95% extraction accuracy and a 30% retrieval-time reduction after proposing semantic chunking and contextual compression." },
+      { title: "Reported measures", body: "The resume describes extraction-quality and retrieval-time improvements after proposing semantic chunking and contextual compression, but does not provide evaluation details or baselines." },
       { title: "What remains unknown", body: "The resume does not state the accuracy definition, retrieval-time baseline, test methodology, or public implementation URL." },
     ],
   },
@@ -517,7 +528,7 @@ export const notes: ProjectNote[] = [
     sections: [
       { title: "Platform features", body: "The resume describes user quotas, role-based access control, and job monitoring for particle physics simulation workflows." },
       { title: "Integration and status", body: "OpenAPI-based integration tools and client libraries were delivered, and the web UI was redesigned to show real-time job status." },
-      { title: "Reported outcomes", body: "The resume attributes 40% less onboarding time for new services to the integration tools and client libraries, and a 35% increase in task submission success to real-time job status tracking." },
+      { title: "Reported outcomes", body: "The resume associates the integration tools and client libraries with easier service onboarding, and real-time job status tracking with improved task submission success." },
     ],
   },
 ];
@@ -534,8 +545,8 @@ export const contextTrajectory: ContextTrajectory[] = [
     step: "02",
     context: "EBRD · London, United Kingdom · AI Intern · Aug 2025–Feb 2026",
     question: "How can institutional documents support retrieval and structured extraction?",
-    technicalChoices: "RAG and extraction used Azure OpenAI, Azure AI Search, LlamaIndex, and Streamlit. Semantic chunking and contextual compression were proposed; the resume reports 30% faster retrieval.",
-    outcome: "RAG and extraction pipelines with reported 95% accuracy across 1,000+ documents and 30% lower retrieval time.",
+    technicalChoices: "RAG and extraction used Azure OpenAI, Azure AI Search, LlamaIndex, and Streamlit. Semantic chunking and contextual compression were proposed to improve retrieval.",
+    outcome: "Built RAG and structured-extraction pipelines for institutional document workflows.",
   },
   {
     step: "03",
@@ -549,14 +560,14 @@ export const contextTrajectory: ContextTrajectory[] = [
     context: "AIAssistant.co · California, United States (Remote) · SDE Intern · Feb 2024–May 2025",
     question: "How can production voice integrations improve responsiveness and speech naturalness?",
     technicalChoices: "Production work used Python, Flask, and PostgreSQL; voice integrations used FastAPI. TTS acoustic-model, prosody, and synthesis tuning were separately listed contributions.",
-    outcome: "Built voice assistant APIs and worked on TTS; the resume reports 35% faster responses and at least 30% higher naturalness.",
+    outcome: "Built voice assistant APIs and contributed to text-to-speech quality.",
   },
   {
     step: "05",
     context: "Infosys Springboard Internship · Remote · AI Intern · May–Jul 2024",
     question: "How can tweet classification support crisis management teams?",
-    technicalChoices: "The project applied NLP-based machine-learning classification to more than 15,000 tweets; the resume does not name the model or evaluation metrics.",
-    outcome: "The resume reports a 40% improvement in crisis-management response time.",
+    technicalChoices: "The project applied NLP-based machine-learning classification to social media posts; the resume does not name the model or evaluation method.",
+    outcome: "The classification work supported crisis-management situational awareness.",
   },
   {
     step: "06",

@@ -665,31 +665,48 @@ pytest
 
 ### Deployment sequence
 
-1. Push the Next.js frontend to the main branch.
-2. Configure preview deployments for pull requests.
-3. Add the FastAPI service only after the static site is stable.
-4. Store secrets outside the repository.
-5. Add a health check and basic request logging to the API.
-6. Verify the production build on desktop and mobile.
+1. Connect the GitHub repository to a Vercel project and let Vercel use the Next.js defaults.
+2. Enable preview deployments for pull requests and keep production deployments on the protected main branch.
+3. Run lint, typecheck, tests, link checks, and the production build before merging.
+4. Review the preview on desktop and mobile, including navigation, search, and external links.
+5. Promote the verified main-branch build to production and check the deployed URL.
+6. Add a backend only when the static site needs one; keep any future secrets in the hosting provider, never in repository content.
+
+Deployment status as of 2026-10-01:
+
+- Production is deployed at [https://portfolio-kappa-fawn-d39fajssxl.vercel.app](https://portfolio-kappa-fawn-d39fajssxl.vercel.app); the public alias was verified to return the portfolio homepage.
+- A manual preview is deployed at [https://portfolio-bnxaw9vcg-anushkavb4-2974s-projects.vercel.app](https://portfolio-bnxaw9vcg-anushkavb4-2974s-projects.vercel.app); it was verified through the authenticated Vercel CLI.
+- Vercel Authentication protects deployment-specific URLs. The production alias is public; preview URLs require authorized access.
+- Automatic GitHub deployments are not configured. Vercel could not connect the repository because the Vercel GitHub integration lacks access. Grant the Vercel GitHub app access to `anushkavb4/portfolio`, then run `vercel git connect` and verify that pull requests create previews and main-branch updates deploy to production.
 
 ### Content workflow
 
-For every new project or note:
+The source of truth is TypeScript data, not MDX:
 
-1. Add structured metadata.
-2. Write the problem and context before the technology section.
-3. State contribution boundaries.
-4. Add evidence, limitations, and an open question.
-5. Run schema validation and the full build.
-6. Review the page as a researcher, engineer, and external collaborator.
+- `data/profile.ts` contains public profile and contact details.
+- `data/resume-atlas.ts` contains projects, the atlas, research questions, notes, and context trajectory.
+- `lib/validation.ts` defines Zod schemas; the currently maintained content is also checked by TypeScript, project tests, and the production build.
+
+For every new or materially updated project, question, or note:
+
+1. Update the matching typed record in `data/resume-atlas.ts`; keep slugs unique and update any atlas, question, or note references that use them.
+2. Lead with the problem and context, then state the individual's contribution separately from team outcomes.
+3. Include evidence and limitations, and label missing facts rather than inferring them. Confirm visibility and contribution boundaries before publishing work details.
+4. Add only public, relevant supporting links. Keep workflow diagrams explicitly labelled as summaries unless they are approved original diagrams.
+5. Run `npm run lint`, `npm run typecheck`, `npm run test`, `npm run check:links`, and `npm run build`.
+6. Review the changed routes and atlas/search relationships locally, then inspect the pull-request preview before merging. Until GitHub integration is enabled, create a manual preview with `vercel`.
 
 ### Maintenance rules
 
 - Keep the repository content as the source of truth.
-- Review external links periodically.
+- Recheck external links before a release and at least quarterly with `npm run check:links`; investigate reported failures, and manually review endpoints that block automated requests.
 - Mark outdated work rather than silently rewriting history.
 - Add new nodes only when they represent a meaningful concept.
 - Prefer a small number of strong case studies over a large project inventory.
+
+### External-link audit
+
+Audit performed 2026-10-01 against the external HTTP(S) links in the profile and project data: seven returned HTTP 200. The DOI redirected to the publisher and returned HTTP 200. LinkedIn returned HTTP 999, an automated-request block, so its destination still needs a manual browser check. The Hugging Face Space returned HTTP 200 and exists, but was sleeping when checked. No confirmed dead links were found.
 
 ---
 

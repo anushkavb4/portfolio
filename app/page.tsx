@@ -1,163 +1,172 @@
 import Link from "next/link";
 import { AtlasMap } from "@/components/atlas/AtlasMap";
-import { researchQuestions, featuredProjects, contextTrajectory } from "@/data/resume-atlas";
+import {
+  contextTrajectory,
+  independentWork,
+  professionalExperience,
+  researchQuestions,
+} from "@/data/resume-atlas";
 import { profile } from "@/data/profile";
-
-const pillars = [
-  { label: "Research questions", value: "Human + computational systems" },
-  { label: "Built systems", value: "Interfaces, models, and infrastructure" },
-  { label: "Context", value: "Organisations, labs, and countries" },
-  { label: "Reasoning", value: "Design trade-offs and limitations" },
-];
 
 export default function HomePage() {
   return (
-    <main className="page-shell">
-      <header className="topbar">
-        <div className="brand-block">
-          <span className="eyebrow">Research Atlas</span>
-          <span className="brand-name">{profile.name}</span>
-        </div>
-        <nav className="nav" aria-label="Main navigation">
-          <Link href="/atlas">Atlas</Link>
-          <Link href="/search">Search</Link>
-          <Link href="/work">Work</Link>
-          <Link href="/questions">Questions</Link>
-          <Link href="/notes">Notes</Link>
-          <Link href="/collaborate">Collaborate</Link>
-        </nav>
-      </header>
+    <main className="home-page">
+      <section className="home-hero" aria-labelledby="home-title">
+        <div className="home-hero-inner">
+          <div className="home-hero-copy">
+            <p className="home-kicker">AI Engineer <span>·</span> EBRD <span>·</span> London</p>
+            <h1 id="home-title">Anushka<br />Bilandani</h1>
+            <p className="home-role">I build AI systems that make complex knowledge useful.</p>
+            <p className="home-summary">
+              Research-led engineering across retrieval, intelligent workflows, and the software
+              systems that bring them into practice.
+            </p>
+            <div className="home-actions">
+              <Link href="/work" className="primary-button">
+                Explore selected work <span aria-hidden="true">↗</span>
+              </Link>
+              <Link href="/atlas" className="text-link-light">
+                Explore the research atlas <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </div>
 
-      <section className="hero">
-        <div className="hero-copy">
-          <p className="kicker">Portfolio / research identity</p>
-          <h1>
-            {profile.title}
-          </h1>
-          <p className="lede">
-            This portfolio is designed as a living research atlas: a practical map of the
-            problems, systems, contexts, and decisions that shape the work.
-          </p>
-          <div className="cta-row">
-            <Link href="/atlas" className="primary-button">Explore the atlas</Link>
-            <Link href="/collaborate" className="secondary-button">Start a conversation</Link>
+          <div className="home-visual" id="atlas" aria-label="Interactive research atlas">
+            <div className="home-visual-heading">
+              <span>Systems in context</span>
+              <span>Knowledge · Tools · People</span>
+            </div>
+            <AtlasMap />
           </div>
         </div>
+        <div className="home-hero-footer">
+          <span>Research-led engineering</span>
+          <span>From information to useful systems</span>
+        </div>
+      </section>
 
-        <div className="hero-panel" id="atlas" aria-label="Research atlas summary">
-          <div className="panel-header">
-            <span className="panel-label">Research atlas</span>
-            <span className="status-dot">Live</span>
+      <div className="home-content">
+        <section className="section home-focus" id="questions">
+          <div className="section-heading">
+            <p className="eyebrow">A point of view</p>
+            <h2>Research meets real systems</h2>
+            <p className="section-intro">
+              Curiosity matters when it changes what we build, how we evaluate it, and who it serves.
+            </p>
           </div>
-          <AtlasMap />
-        </div>
-      </section>
-
-      <section className="section" id="questions">
-        <div className="section-heading">
-          <p className="eyebrow">Questions the work answers</p>
-          <h2>Research identity in context</h2>
-        </div>
-        <div className="question-list">
-          {researchQuestions.map((question, index) => (
-            <article key={question.slug} className="question-card">
-              <span className="question-index">0{index + 1}</span>
-              <p>{question.question}</p>
+          <div className="focus-grid">
+            <article>
+              <span className="focus-label">Investigate</span>
+              <p>How can information retrieval become more useful in institutional workflows?</p>
             </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section" id="work">
-        <div className="section-heading">
-          <p className="eyebrow">What shapes the work</p>
-          <h2>Core pillars</h2>
-        </div>
-        <div className="pillars-grid">
-          {pillars.map((pillar) => (
-            <article key={pillar.label} className="pillar-card">
-              <span className="pillar-label">{pillar.label}</span>
-              <strong>{pillar.value}</strong>
+            <article>
+              <span className="focus-label">Build</span>
+              <p>How should models, interfaces, and infrastructure work together?</p>
             </article>
-          ))}
-        </div>
-      </section>
+            <article>
+              <span className="focus-label">Evaluate</span>
+              <p>What evidence shows a system helps, and where are its limits?</p>
+            </article>
+          </div>
+        </section>
 
-      <section className="section" id="featured-work">
-        <div className="section-heading">
-          <p className="eyebrow">Featured work</p>
-          <h2>Selected stories</h2>
-        </div>
-        <div className="question-list">
-          {featuredProjects.map((project) => (
-            <article key={project.slug} className="question-card">
-              <span className="question-index">{project.order.toString().padStart(2, "0")}</span>
-              <div>
+        <section className="section home-project-group" id="featured-work">
+          <div className="section-heading section-heading-row">
+            <div>
+              <p className="eyebrow">Company work</p>
+              <h2>Professional experience</h2>
+            </div>
+            <Link href="/work" className="section-link">All work <span aria-hidden="true">→</span></Link>
+          </div>
+          <div className="home-project-grid">
+            {professionalExperience.slice(0, 3).map((project) => (
+              <Link key={project.slug} href={`/work/${project.slug}`} className="home-project">
+                <span className="home-project-category">{project.organization}</span>
+                <span className="home-project-context">
+                  {[project.role, project.period].filter((value) => value !== "Not specified").join(" · ")}
+                </span>
                 <h3>{project.name}</h3>
                 <p>{project.shortTitle}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+                <span className="home-project-arrow" aria-hidden="true">↗</span>
+              </Link>
+            ))}
+          </div>
+        </section>
 
-      <section className="section" id="trajectory">
-        <div className="section-heading">
-          <p className="eyebrow">Context and trajectory</p>
-          <h2>How the work moves across settings</h2>
-        </div>
-        <div className="trajectory-grid">
-          {contextTrajectory.map((item) => (
-            <article key={item.step} className="trajectory-card">
-              <span className="trajectory-step">{item.step}</span>
-              <h3>{item.context}</h3>
-              <p><strong>Question:</strong> {item.question}</p>
-              <p><strong>Technical choices:</strong> {item.technicalChoices}</p>
-              <p><strong>Outcome:</strong> {item.outcome}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+        <section className="section home-project-group" aria-labelledby="independent-work-title">
+          <div className="section-heading section-heading-row">
+            <div>
+              <p className="eyebrow">Outside company roles</p>
+              <h2 id="independent-work-title">Independent projects & research</h2>
+            </div>
+            <Link href="/work" className="section-link">All work <span aria-hidden="true">→</span></Link>
+          </div>
+          <div className="home-project-grid">
+            {independentWork.slice(0, 3).map((project) => (
+              <Link key={project.slug} href={`/work/${project.slug}`} className="home-project">
+                <span className="home-project-category">{project.category.replaceAll("-", " ")}</span>
+                <h3>{project.name}</h3>
+                <p>{project.shortTitle}</p>
+                <span className="home-project-arrow" aria-hidden="true">↗</span>
+              </Link>
+            ))}
+          </div>
+        </section>
 
-      <section className="section" id="education">
-        <div className="section-heading">
-          <p className="eyebrow">Education and achievements</p>
-          <h2>Training and milestones</h2>
-        </div>
-        <div className="trajectory-grid">
-          <article className="trajectory-card">
-            <span className="trajectory-step">Education</span>
-            <h3>{profile.education.institution}</h3>
+        <section className="section" id="research-questions">
+          <div className="section-heading">
+            <p className="eyebrow">Questions I return to</p>
+            <h2>Open questions, grounded in practice</h2>
+          </div>
+          <div className="home-question-list">
+            {researchQuestions.map((question) => (
+              <Link key={question.slug} href={`/questions#${question.slug}`} className="home-question">
+                <span>{question.title}</span>
+                <span className="home-question-arrow" aria-hidden="true">→</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="section" id="trajectory">
+          <div className="section-heading">
+            <p className="eyebrow">Experience</p>
+            <h2>Work shaped by different contexts</h2>
+          </div>
+          <div className="trajectory-grid">
+            {contextTrajectory.map((item) => (
+              <article key={item.step} className="trajectory-card">
+                <span className="trajectory-step">{item.step}</span>
+                <h3>{item.context}</h3>
+                <p><strong>Question:</strong> {item.question}</p>
+                <p><strong>Technical choices:</strong> {item.technicalChoices}</p>
+                <p><strong>Outcome:</strong> {item.outcome}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section education-section" id="education">
+          <div>
+            <p className="eyebrow">Education</p>
+            <h2>{profile.education.institution}</h2>
+          </div>
+          <div>
             <p>{profile.education.degree}</p>
-            <p>{profile.education.location} · {profile.education.period} · CGPA {profile.education.cgpa}</p>
-          </article>
-          <article className="trajectory-card">
-            <span className="trajectory-step">Achievements</span>
-            <ul>
-              {profile.achievements.map((achievement) => (
-                <li key={achievement}>{achievement}</li>
-              ))}
-            </ul>
-          </article>
-        </div>
-      </section>
+            <p>{profile.education.location} · {profile.education.period}</p>
+          </div>
+        </section>
 
-      <section className="section collaborate" id="collaborate">
-        <div className="section-heading">
-          <p className="eyebrow">Collaboration</p>
-          <h2>Open to the next question</h2>
-        </div>
-        <div className="collab-panel">
-          <p>
-            The portfolio is designed to support collaboration across research, engineering,
-            product, and applied domains. New work can emerge from systems design, field
-            inquiry, interdisciplinary experimentation, or practical deployment.
-          </p>
+        <section className="home-contact" id="collaborate">
+          <div>
+            <p className="eyebrow">Collaboration</p>
+            <h2>Have a thoughtful problem to solve?</h2>
+          </div>
           <Link href="/collaborate" className="primary-button">
-            Start a conversation
+            Get in touch <span aria-hidden="true">↗</span>
           </Link>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
   );
 }
