@@ -11,6 +11,7 @@ const sections = [
   { label: "Questions", href: "/questions" },
   { label: "Notes", href: "/notes" },
   { label: "Search", href: "/search" },
+  { label: "Involvement", href: "/involvement" },
   { label: "Collaborate", href: "/collaborate" },
 ];
 

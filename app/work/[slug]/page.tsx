@@ -23,26 +23,14 @@ export default async function WorkDetailPage({
   return (
     <main className="page-shell">
       <section className="section">
-        <div className="collab-panel" style={{ display: "grid", gap: "1rem" }}>
-          <p className="kicker" style={{ margin: 0 }}>{project.category}</p>
-          <h1 style={{ margin: 0 }}>{project.shortTitle}</h1>
-          <p><strong>Organization:</strong> {project.organization}</p>
-          <p>
-            <strong>Role and dates:</strong>{" "}
-            {[project.role, project.period].filter((value) => value !== "Not specified").join(" · ")}
-          </p>
-          {project.location !== "Not specified" && <p><strong>Location:</strong> {project.location}</p>}
-          <p>
-            <strong>Context:</strong> {project.contexts.join(" · ")}
-          </p>
-          <p>
-            <strong>Systems:</strong> {project.systems.join(" · ")}
-          </p>
-          <p>
-            <strong>Technologies:</strong> {project.technologies.join(" · ")}
-          </p>
-          <p>
-            <strong>Outcome:</strong> {project.outcome}
+        <header className="project-intro">
+          <p className="eyebrow">{project.organization} · {project.category.replaceAll("-", " ")}</p>
+          <h1>{project.name}</h1>
+          <p className="project-intro-summary">{project.summary}</p>
+          <p className="project-intro-meta">
+            {[project.role, project.period, project.location]
+              .filter((value) => value !== "Not specified")
+              .join(" · ")}
           </p>
           <div className="project-links">
             <Link href="/work" className="secondary-button">
@@ -61,9 +49,8 @@ export default async function WorkDetailPage({
             ))}
           </div>
           {project.disclosure && <p>{project.disclosure}</p>}
-        </div>
+        </header>
 
-        <SectionBlock eyebrow="Summary" title="Case summary" body={project.summary} />
         {project.workflow && (
           <figure className="workflow-figure" aria-labelledby="workflow-title">
             <p className="eyebrow">Workflow</p>

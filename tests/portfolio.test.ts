@@ -5,12 +5,15 @@ import {
   atlasEdges,
   atlasNodes,
   featuredProjects,
+  homepageIndependentWork,
+  homepageProfessionalExperience,
   independentWork,
   notes,
   professionalExperience,
   researchQuestions,
 } from "../data/resume-atlas";
 import { buildSearchIndex, filterSearchEntries, getSearchFacets } from "../lib/search";
+import { profile } from "../data/profile";
 
 const entries = buildSearchIndex(featuredProjects, researchQuestions, notes);
 
@@ -111,4 +114,20 @@ test("filters intersect and clearing filters returns every record", () => {
     [],
   );
   assert.equal(filterSearchEntries(entries, {}).length, entries.length);
+});
+
+test("leadership and campus involvement has a dedicated page", () => {
+  assert.ok(existsSync("app/involvement/page.tsx"));
+  assert.ok(profile.involvement.length > 0);
+  assert.ok(profile.involvement.some((item) => item.organization.includes("Student Activity Council")));
+});
+
+test("homepage highlights current roles and recent independent research", () => {
+  assert.deepEqual(homepageProfessionalExperience.map((project) => project.slug), [
+    "moqi-collective-intelligence",
+    "ebrd-agentic-ai",
+    "cern-gofer",
+  ]);
+  assert.ok(homepageIndependentWork.some((project) => project.slug === "multilingual-safety-alignment"));
+  assert.ok(homepageIndependentWork.some((project) => project.slug === "alzheimers-detection-ensembles"));
 });

@@ -1143,6 +1143,95 @@ h1, h2, h3, h4 {
   border-top: 1px solid var(--line);
 }
 
+.project-intro {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem 0 2.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-intro h1 {
+  max-width: 900px;
+  margin: 0;
+  font-size: 3.25rem;
+  line-height: 1.08;
+}
+
+.project-intro-summary {
+  max-width: 760px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.15rem;
+  line-height: 1.65;
+}
+
+.project-intro-meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.project-intro .project-links {
+  margin-top: 0;
+}
+
+.involvement-page > .section-heading {
+  margin-bottom: 3rem;
+}
+
+.involvement-page > .section-heading h1 {
+  margin: 0.6rem 0 0;
+  font-size: 3rem;
+}
+
+.involvement-groups {
+  display: grid;
+  gap: 3rem;
+}
+
+.involvement-group > h2 {
+  margin-bottom: 0.8rem;
+}
+
+.involvement-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.involvement-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 12rem;
+  gap: 2rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.involvement-row h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.involvement-role,
+.involvement-summary {
+  margin: 0.35rem 0 0;
+}
+
+.involvement-role {
+  font-weight: 600;
+}
+
+.involvement-summary,
+.involvement-period {
+  color: var(--muted);
+}
+
+.involvement-period {
+  text-align: right;
+  font-size: 0.9rem;
+}
+
 .detail-section {
   border-top: 1px solid var(--line);
   padding-top: 2rem;
@@ -1421,7 +1510,8 @@ h1, h2, h3, h4 {
 
   .focus-grid,
   .home-project-grid,
-  .education-section {
+  .education-section,
+  .involvement-row {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -1434,6 +1524,18 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 560px) {
+  .involvement-page > .section-heading h1 {
+    font-size: 2.2rem;
+  }
+
+  .involvement-period {
+    text-align: left;
+  }
+
+  .project-intro h1 {
+    font-size: 2.1rem;
+  }
+
   .home-content .section-heading h2 {
     font-size: 2rem;
   }

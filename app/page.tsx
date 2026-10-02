@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { AtlasMap } from "@/components/atlas/AtlasMap";
 import {
-  contextTrajectory,
-  independentWork,
-  professionalExperience,
+  homepageProfessionalExperience,
+  homepageIndependentWork,
   researchQuestions,
 } from "@/data/resume-atlas";
 import { profile } from "@/data/profile";
@@ -14,12 +13,12 @@ export default function HomePage() {
       <section className="home-hero" aria-labelledby="home-title">
         <div className="home-hero-inner">
           <div className="home-hero-copy">
-            <p className="home-kicker">AI Engineer <span>·</span> EBRD <span>·</span> London</p>
+            <p className="home-kicker">MoQi Co-Founder <span>·</span> EBRD AI Engineer</p>
             <h1 id="home-title">Anushka<br />Bilandani</h1>
-            <p className="home-role">I build AI systems that make complex knowledge useful.</p>
+            <p className="home-role">I build systems that turn complex knowledge and human judgment into clearer decisions.</p>
             <p className="home-summary">
-              Research-led engineering across retrieval, intelligent workflows, and the software
-              systems that bring them into practice.
+              From institutional retrieval and agentic workflows to collective evaluation systems
+              and applied AI research.
             </p>
             <div className="home-actions">
               <Link href="/work" className="primary-button">
@@ -79,7 +78,7 @@ export default function HomePage() {
             <Link href="/work" className="section-link">All work <span aria-hidden="true">→</span></Link>
           </div>
           <div className="home-project-grid">
-            {professionalExperience.slice(0, 3).map((project) => (
+            {homepageProfessionalExperience.map((project) => (
               <Link key={project.slug} href={`/work/${project.slug}`} className="home-project">
                 <span className="home-project-category">{project.organization}</span>
                 <span className="home-project-context">
@@ -102,7 +101,7 @@ export default function HomePage() {
             <Link href="/work" className="section-link">All work <span aria-hidden="true">→</span></Link>
           </div>
           <div className="home-project-grid">
-            {independentWork.slice(0, 3).map((project) => (
+            {homepageIndependentWork.map((project) => (
               <Link key={project.slug} href={`/work/${project.slug}`} className="home-project">
                 <span className="home-project-category">{project.category.replaceAll("-", " ")}</span>
                 <h3>{project.name}</h3>
@@ -124,24 +123,6 @@ export default function HomePage() {
                 <span>{question.title}</span>
                 <span className="home-question-arrow" aria-hidden="true">→</span>
               </Link>
-            ))}
-          </div>
-        </section>
-
-        <section className="section" id="trajectory">
-          <div className="section-heading">
-            <p className="eyebrow">Experience</p>
-            <h2>Work shaped by different contexts</h2>
-          </div>
-          <div className="trajectory-grid">
-            {contextTrajectory.map((item) => (
-              <article key={item.step} className="trajectory-card">
-                <span className="trajectory-step">{item.step}</span>
-                <h3>{item.context}</h3>
-                <p><strong>Question:</strong> {item.question}</p>
-                <p><strong>Technical choices:</strong> {item.technicalChoices}</p>
-                <p><strong>Outcome:</strong> {item.outcome}</p>
-              </article>
             ))}
           </div>
         </section>

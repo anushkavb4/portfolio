@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { featuredProjects } from "@/data/resume-atlas";
 
-const filters = ["all", "enterprise-ai", "platform-engineering", "machine-learning"] as const;
+const filters = ["all", "enterprise-ai", "platform-engineering", "machine-learning", "ai-safety"] as const;
 
 export default function WorkPage() {
   const [query, setQuery] = useState("");
@@ -94,16 +94,12 @@ export default function WorkPage() {
                           <span className="meta-label">{project.category.replaceAll("-", " ")}</span>
                         </div>
                         <h3>{project.name}</h3>
-                        <p>{project.shortTitle}</p>
                         <p>
                           {[project.organization, project.role, project.period, project.location]
                             .filter((value) => value !== "Not specified")
                             .join(" · ")}
                         </p>
                         <p>{project.summary}</p>
-                        <p>
-                          <strong>Systems:</strong> {project.systems.join(" · ")}
-                        </p>
                         <div className="project-links">
                           <Link href={`/work/${project.slug}`} className="secondary-button">
                             Open case study

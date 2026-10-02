@@ -76,14 +76,6 @@ export type ProjectNote = {
   sections: ProjectNoteSection[];
 };
 
-export type ContextTrajectory = {
-  step: string;
-  context: string;
-  question: string;
-  technicalChoices: string;
-  outcome: string;
-};
-
 export const atlasNodes: AtlasNode[] = [
   {
     id: "knowledge-retrieval",
@@ -131,6 +123,40 @@ export const atlasEdges: AtlasEdge[] = [
 
 export const featuredProjects: PortfolioProject[] = [
   {
+    slug: "moqi-collective-intelligence",
+    name: "Collective intelligence for decision-making",
+    shortTitle: "Multi-agent evaluation for enterprise innovation and early-stage investing",
+    category: "enterprise-ai",
+    status: "current-work",
+    workType: "professional-experience",
+    organization: "MoQi",
+    role: "Co-Founder & Lead Engineer",
+    period: "Mar 2025 – Present",
+    location: "Remote",
+    contexts: ["Enterprise innovation", "Early-stage investing", "Decision systems"],
+    systems: ["Multi-agent input", "Weighted aggregation", "Explainable ranking"],
+    technologies: [],
+    summary: "Building a collective intelligence platform that turns subjective idea and startup evaluation into structured, data-driven decision systems.",
+    outcome: "Designed mechanisms to capture, weight, and aggregate multi-agent input into ranked, explainable outcomes.",
+    workflow: {
+      caption: "High-level workflow summarized from the supplied CV; internal architecture is not shown.",
+      steps: [
+        { title: "Idea or startup", detail: "A proposal enters an evaluation workflow" },
+        { title: "Collect input", detail: "Capture judgments from multiple agents" },
+        { title: "Weight and aggregate", detail: "Combine input into a structured decision" },
+        { title: "Explainable ranking", detail: "Present ranked outcomes for review" },
+      ],
+    },
+    caseStudy: [
+      { eyebrow: "Context", title: "From subjective opinions to structured decisions", body: "MoQi is developing decision systems for enterprise innovation and early-stage investing, where evaluations can otherwise be difficult to compare." },
+      { eyebrow: "Contribution", title: "Co-founding and technical leadership", body: "As Co-Founder and Lead Engineer, designed mechanisms to capture, weight, and aggregate multi-agent input." },
+      { eyebrow: "System", title: "Ranked and explainable outcomes", body: "The platform turns collected judgments into structured rankings that make the basis of an evaluation easier to inspect." },
+    ],
+    links: [],
+    featured: true,
+    order: 0,
+  },
+  {
     slug: "ebrd-agentic-ai",
     name: "Agentic AI for enterprise workflows",
     shortTitle: "Multi-agent orchestration and tool-augmented LLMs",
@@ -176,22 +202,22 @@ export const featuredProjects: PortfolioProject[] = [
     period: "Aug 2025 – Feb 2026",
     location: "London, United Kingdom",
     contexts: ["Institutional documents", "Information retrieval", "Structured extraction"],
-    systems: ["RAG", "Semantic chunking", "Contextual compression", "Data extraction"],
-    technologies: ["Azure OpenAI", "Azure AI Search", "LlamaIndex", "Streamlit"],
-    summary: "Developed RAG systems for institutional documents and LLM-driven structured data extraction pipelines.",
+    systems: ["RAG", "Hybrid search", "Reranking", "Embedding retrieval", "Semantic chunking", "Structured extraction"],
+    technologies: ["Python", "Azure OpenAI", "Azure AI Search", "LlamaIndex", "Streamlit"],
+    summary: "Built institutional-document RAG and structured-extraction pipelines with hybrid retrieval, reranking, and embedding-based search.",
     outcome: "Built RAG and structured-extraction pipelines for institutional documents using semantic chunking and contextual compression.",
     workflow: {
       caption: "High-level flow assembled from resume-listed tasks and tools; component-level architecture was not supplied.",
       steps: [
         { title: "Institutional documents", detail: "Source material for retrieval and structured extraction" },
-        { title: "Retrieval", detail: "Azure AI Search, LlamaIndex, semantic chunking, and contextual compression" },
+        { title: "Retrieve", detail: "Hybrid search, reranking, embeddings, chunking, and context management" },
         { title: "LLM processing", detail: "Azure OpenAI for RAG and structured data extraction" },
         { title: "User interface", detail: "Streamlit" },
       ],
     },
     caseStudy: [
       { eyebrow: "Context", title: "Institutional document workflows", body: "During an AI internship at EBRD in London, the work focused on retrieving information from institutional documents and extracting structured data." },
-      { eyebrow: "Contribution", title: "RAG and extraction pipelines", body: "Developed systems using Azure OpenAI, Azure AI Search, LlamaIndex, and Streamlit. Proposed semantic chunking and contextual compression techniques." },
+      { eyebrow: "Contribution", title: "Retrieval and structured extraction", body: "Built RAG with LlamaIndex, Azure OpenAI, and Azure AI Search, including hybrid search, reranking, and embedding-based retrieval. Developed Python extraction pipelines with schema design, chunking, and retrieval alignment." },
       { eyebrow: "Outcome", title: "Pipeline improvements", body: "The source material describes improvements to extraction quality and retrieval time, but does not provide evaluation methodology or baselines." },
     ],
     links: [],
@@ -209,23 +235,23 @@ export const featuredProjects: PortfolioProject[] = [
     role: "Technical Intern",
     period: "Jun 2025 – Aug 2025",
     location: "Geneva, Switzerland",
-    contexts: ["Particle physics", "Simulation workflows", "Scientific computing"],
-    systems: ["Job submission", "Quotas", "Role-based access control", "Job monitoring"],
+    contexts: ["Particle physics", "FPGA synthesis", "Scientific computing"],
+    systems: ["FPGA synthesis workflows", "Quotas", "Role-based access control", "Secure job orchestration", "REST API client"],
     technologies: ["Python", "FastAPI", "OpenAPI"],
-    summary: "Built Gofer, a secure and scalable Synthesis-as-a-Service platform for particle physics simulation workflows.",
+    summary: "Developed Gofer, a multi-user Synthesis-as-a-Service platform for FPGA workflows in scientific computing.",
     outcome: "OpenAPI integration tools and client libraries streamlined service onboarding, while real-time job status tracking improved task submission success.",
     workflow: {
       caption: "Operational sequence reconstructed from resume-listed platform features; internal service architecture was not supplied.",
       steps: [
-        { title: "Submit simulation job", detail: "Particle physics workflow enters Gofer" },
+        { title: "Submit synthesis job", detail: "Research groups submit FPGA workflows to Gofer" },
         { title: "Access controls", detail: "User quotas and role-based access control" },
         { title: "Run and monitor", detail: "Job monitoring for submitted work" },
         { title: "Track status", detail: "Real-time job status in the redesigned web UI" },
       ],
     },
     caseStudy: [
-      { eyebrow: "Context", title: "Simulation workflows at CERN Openlab", body: "Gofer supported particle physics simulation workflows during a technical internship at CERN Openlab in Geneva." },
-      { eyebrow: "Contribution", title: "Platform, integrations, and job visibility", body: "Built the platform with Python and FastAPI, including user quotas, role-based access control, and job monitoring. Delivered OpenAPI-based integration tools and client libraries, and redesigned the web UI with real-time job status tracking." },
+      { eyebrow: "Context", title: "Scientific computing at CERN Openlab", body: "Gofer enabled multi-user access to FPGA synthesis workflows for research groups at CERN Openlab in Geneva." },
+      { eyebrow: "Contribution", title: "Workflow platform and research integrations", body: "Developed Gofer in Python with quotas, role-based access, and secure job orchestration. Built a REST API client for submitting, monitoring, and retrieving jobs, and improved workflow scheduling." },
       { eyebrow: "Outcome", title: "Onboarding and submission improvements", body: "The source material associates the integration tools with easier onboarding and real-time status tracking with higher task submission success. Deployment architecture and evaluation details were not supplied." },
     ],
     links: [],
@@ -244,13 +270,13 @@ export const featuredProjects: PortfolioProject[] = [
     period: "Feb 2024 – May 2025",
     location: "California, United States (Remote)",
     contexts: ["AI products", "Voice assistants", "Production platform"],
-    systems: ["REST APIs", "Text-to-speech", "Production services"],
+    systems: ["Prompt orchestration", "Multi-agent coordination", "Voice APIs", "TTS conditioning", "Inference reliability"],
     technologies: ["Python", "Flask", "FastAPI", "PostgreSQL"],
-    summary: "Implemented product features, fixed production issues, optimized platform performance, and built REST APIs for voice assistant integrations.",
+    summary: "Built prompt orchestration and voice integration features, improved text-to-speech interactions, and fixed production reliability issues.",
     outcome: "Contributed to platform stability, responsive voice APIs, and more natural text-to-speech output.",
     caseStudy: [
       { eyebrow: "Context", title: "Production AI products", body: "Worked remotely with AIAssistant.co, a California-based organization, on deployed AI-powered products." },
-      { eyebrow: "Contribution", title: "Product services and speech quality", body: "Implemented features and REST APIs for voice assistant integrations using Python, Flask, FastAPI, and PostgreSQL. Fine-tuned acoustic models and adjusted prosody and synthesis parameters for text-to-speech." },
+      { eyebrow: "Contribution", title: "Prompt orchestration and voice interaction", body: "Designed a prompt orchestration framework with template libraries, dynamic context injection, and few-shot strategies. Developed content-aware TTS conditioning and contributed to agent coordination, latency, and inference reliability." },
       { eyebrow: "Architecture boundary", title: "Two contributions, not one asserted pipeline", body: "The resume lists voice assistant API work and TTS model tuning separately; it does not document how the API and speech-synthesis work were connected in production." },
       { eyebrow: "Outcome", title: "Service and speech-quality improvements", body: "The resume describes improved response times and TTS naturalness, but does not provide measurement protocols or public repository links." },
     ],
@@ -261,7 +287,7 @@ export const featuredProjects: PortfolioProject[] = [
   {
     slug: "infosys-nlp",
     name: "Tweet classification for crisis management",
-    shortTitle: "NLP classification for crisis management",
+    shortTitle: "Disaster-tweet classification and analysis",
     category: "machine-learning",
     status: "selected-work",
     workType: "professional-experience",
@@ -270,23 +296,23 @@ export const featuredProjects: PortfolioProject[] = [
     period: "May 2024 – Jul 2024",
     location: "Remote",
     contexts: ["Crisis management", "Social media", "Situational awareness"],
-    systems: ["NLP classification", "Crisis response"],
-    technologies: ["NLP", "Machine learning"],
-    summary: "Developed an NLP-based machine-learning model to classify social media posts for crisis-management situational awareness.",
-    outcome: "Supported situational awareness for crisis-management teams.",
+    systems: ["TF-IDF", "Transformer embeddings", "Ensemble classifiers", "Inference dashboards"],
+    technologies: ["Python", "Streamlit", "NLP", "Machine learning"],
+    summary: "Built a disaster-related tweet classification pipeline using TF-IDF, transformer embeddings, and ensemble classifiers.",
+    outcome: "Created visualization dashboards for inference, evaluation, and error analysis.",
     workflow: {
       caption: "High-level workflow from the resume; model choice and evaluation method were not provided.",
       steps: [
         { title: "Social media posts", detail: "Source material for situational awareness" },
-        { title: "NLP classification", detail: "Machine learning model classifies tweets" },
-        { title: "Situational awareness", detail: "Classification supports crisis management teams" },
+        { title: "Classify", detail: "Compare TF-IDF, transformer, and ensemble approaches" },
+        { title: "Review", detail: "Streamlit dashboards for evaluation and error analysis" },
         { title: "Response", detail: "Classification supports crisis response" },
       ],
     },
     caseStudy: [
       { eyebrow: "Context", title: "Crisis management signals", body: "The internship project used tweet classification to support situational awareness for crisis management teams." },
-      { eyebrow: "Contribution", title: "NLP model development", body: "Developed a machine-learning model using NLP techniques to classify social media posts." },
-      { eyebrow: "Outcome and limits", title: "Situational awareness", body: "The classification work supported crisis-management response. The resume does not name the model or provide an evaluation method." },
+      { eyebrow: "Contribution", title: "Classification pipeline", body: "Benchmarked TF-IDF, transformer embeddings, and ensemble classifiers on disaster-related social media posts." },
+      { eyebrow: "Outcome", title: "Analysis dashboards", body: "Built Streamlit dashboards for inference, evaluation metrics, and error analysis." },
     ],
     links: [],
     featured: true,
@@ -304,24 +330,24 @@ export const featuredProjects: PortfolioProject[] = [
     period: "Not specified",
     location: "Not specified",
     contexts: ["Agriculture", "Plant disease detection", "Academic research"],
-    systems: ["Image classification", "Convolutional neural networks"],
-    technologies: ["CNNs", "Deep learning"],
-    summary: "Compared three CNN models for potato leaf disease detection.",
-    outcome: "The resume reports a 7.68% accuracy improvement. The paper is listed in Expert Systems with Applications (impact factor 7.5).",
-    disclosure: "Published paper: https://doi.org/10.1016/j.eswa.2024.126066. The resume does not specify the three model names or the accuracy baseline.",
+    systems: ["Six-class image classification", "K-fold cross-validation", "Hyperparameter optimization"],
+    technologies: ["DenseNet201", "ResNet152V2", "NASNetMobile", "Deep learning"],
+    summary: "Co-authored a six-class potato leaf disease study comparing DenseNet201, ResNet152V2, and NASNetMobile.",
+    outcome: "The published study reports a 7.68% accuracy improvement over baselines using optimized preprocessing and augmentation.",
+    disclosure: "The exact baseline scores and detailed cross-validation setup are not stated in the supplied resume.",
     workflow: {
       caption: "Research workflow reconstructed from the resume; model names and evaluation split were not provided.",
       steps: [
         { title: "Potato leaf images", detail: "Disease detection task" },
-        { title: "CNN comparison", detail: "Three different convolutional neural network models" },
-        { title: "Accuracy evaluation", detail: "Reported 7.68% improvement; baseline not stated" },
+        { title: "Model comparison", detail: "DenseNet201, ResNet152V2, and NASNetMobile" },
+        { title: "Evaluation", detail: "K-fold cross-validation and hyperparameter optimization" },
         { title: "Publication", detail: "Expert Systems with Applications" },
       ],
     },
     caseStudy: [
       { eyebrow: "Context", title: "Potato leaf disease detection", body: "The project investigated deep convolutional neural networks for identifying disease in potato leaves." },
-      { eyebrow: "Contribution", title: "Comparison across three CNN models", body: "Compared results using three different CNN models. The resume does not identify the models or describe the individual contribution boundaries." },
-      { eyebrow: "Publication and outcome", title: "Published research", body: "The work was published in Expert Systems with Applications. The resume reports a 7.68% improvement in accuracy; the baseline and evaluation split are not stated here." },
+      { eyebrow: "Contribution", title: "Model development and research", body: "Co-authored the work, contributing to model development, experimental design, result analysis, and manuscript writing. The study compared DenseNet201, ResNet152V2, and NASNetMobile across six potato leaf disease classes." },
+      { eyebrow: "Publication and outcome", title: "Published in Expert Systems with Applications", body: "The study used k-fold cross-validation and hyperparameter optimization, and reports a 7.68% accuracy improvement over baselines after preprocessing and augmentation improvements." },
     ],
     links: [{ label: "Published paper (DOI)", url: "https://doi.org/10.1016/j.eswa.2024.126066" }],
     featured: true,
@@ -376,7 +402,7 @@ export const featuredProjects: PortfolioProject[] = [
     contexts: ["Music generation", "MIDI datasets", "Model deployment"],
     systems: ["Data preprocessing", "Melody generation API", "Containerized deployment"],
     technologies: ["Keras", "TensorFlow", "Flask", "Docker", "Gradio", "LSTM"],
-    summary: "Built an LSTM-based music generation model trained on MIDI datasets, with preprocessing, model training, a melody-generation API, Docker deployment, and a Gradio interface.",
+    summary: "Trained an LSTM-based music generation model on more than 50,000 MIDI events, with preprocessing, a melody-generation API, and a live demo.",
     outcome: "The resume reports a 15% reduction in loss.",
     disclosure: "The public repository documents the Gradio interface, API, and deployment options. The resume reports the model outcome; the repository does not provide a benchmark methodology for the 15% loss reduction.",
     workflow: {
@@ -390,7 +416,7 @@ export const featuredProjects: PortfolioProject[] = [
     },
     caseStudy: [
       { eyebrow: "Context", title: "Sequence modeling for music", body: "The project trained an LSTM-based music generation model on MIDI datasets." },
-      { eyebrow: "Contribution", title: "End-to-end implementation", body: "The resume describes preprocessing and training with Keras/TensorFlow, a melody generation API with Flask, and containerized deployment using Docker. The public repository also includes a Gradio interface." },
+      { eyebrow: "Contribution", title: "End-to-end implementation", body: "Trained an LSTM model on more than 50,000 MIDI events, tuned hyperparameters, and built the generation API and deployment. The public repository also includes a Gradio interface." },
       { eyebrow: "Outcome", title: "Loss reduction and public demo", body: "The resume reports a 15% reduction in loss. The public repository provides a live Hugging Face demo; no benchmark methodology for the loss figure is stated." },
     ],
     links: [
@@ -475,14 +501,90 @@ export const featuredProjects: PortfolioProject[] = [
     featured: true,
     order: 10,
   },
+  {
+    slug: "multilingual-safety-alignment",
+    name: "Multilingual safety alignment with intent-aware DPO",
+    shortTitle: "Research on multilingual LLM jailbreak robustness",
+    category: "ai-safety",
+    status: "current-work",
+    workType: "independent-work",
+    organization: "Group research project",
+    role: "Research project",
+    period: "2025 – Ongoing",
+    location: "Not specified",
+    contexts: ["AI safety", "Multilingual NLP", "Bengali, Chinese, and Arabic"],
+    systems: ["Intent-aware prompt rewriting", "Safety filtering", "Preference optimization"],
+    technologies: ["Direct Preference Optimization", "Hugging Face Transformers", "PEFT", "XSTest", "PolyGuard"],
+    summary: "Developing an alignment framework for multilingual LLM jailbreak vulnerabilities across Bengali, Chinese, and Arabic.",
+    outcome: "The group is constructing synthetic preference data and evaluating aligned models with multilingual safety benchmarks.",
+    workflow: {
+      caption: "Research workflow summarized from the supplied CV; this is not an original internal diagram.",
+      steps: [
+        { title: "Multilingual adversarial input", detail: "Jailbreak prompts in Bengali, Chinese, and Arabic" },
+        { title: "Intent-aware safeguards", detail: "Prompt rewriting and safety filtering" },
+        { title: "Preference alignment", detail: "Synthetic preferences and DPO fine-tuning" },
+        { title: "Robustness evaluation", detail: "XSTest and PolyGuard benchmarks" },
+      ],
+    },
+    caseStudy: [
+      { eyebrow: "Research question", title: "Can safety transfer across languages?", body: "This group research project studies multilingual jailbreak vulnerabilities in Bengali, Chinese, and Arabic." },
+      { eyebrow: "Approach", title: "Intent-aware alignment", body: "The project is developing prompt rewriting and safety filtering, then training with Direct Preference Optimization on synthetic preference datasets using Transformers and PEFT." },
+      { eyebrow: "Evaluation", title: "Measure multilingual robustness", body: "The CV lists XSTest and PolyGuard for benchmark evaluation and analysis of cross-lingual transferability. Results are not yet reported." },
+    ],
+    links: [],
+    featured: true,
+    order: 11,
+  },
+  {
+    slug: "alzheimers-detection-ensembles",
+    name: "Alzheimer’s disease detection with deep learning ensembles",
+    shortTitle: "Ensemble classification from MRI scans",
+    category: "machine-learning",
+    status: "selected-work",
+    workType: "independent-work",
+    organization: "Independent research",
+    role: "Research project",
+    period: "Not specified",
+    location: "Not specified",
+    contexts: ["Medical image analysis", "MRI", "Alzheimer’s disease"],
+    systems: ["Image preprocessing", "Ensemble classification", "Ablation studies"],
+    technologies: ["VGG16", "MobileNet", "InceptionResNetV2", "Deep learning"],
+    summary: "Developed an ensemble framework for multi-stage Alzheimer’s classification from MRI scans.",
+    outcome: "The CV reports 97.93% accuracy, 98.04% specificity, and 95.89% sensitivity, outperforming individual backbones by 2.8%.",
+    workflow: {
+      caption: "High-level research workflow summarized from the supplied CV; dataset and evaluation protocol are not specified.",
+      steps: [
+        { title: "MRI scans", detail: "Medical images for multi-stage classification" },
+        { title: "Preprocess", detail: "Intensity normalization, skull-stripping, and spatial alignment" },
+        { title: "Ensemble", detail: "Combine VGG16, MobileNet, and InceptionResNetV2" },
+        { title: "Evaluate", detail: "Ablation and hyperparameter studies" },
+      ],
+    },
+    caseStudy: [
+      { eyebrow: "Context", title: "Medical image analysis", body: "This independent research project applies deep-learning ensembles to Alzheimer’s classification from MRI scans." },
+      { eyebrow: "Approach", title: "Preprocessing and model ensemble", body: "The work combines VGG16, MobileNet, and InceptionResNetV2, with intensity normalization, skull-stripping, and spatial alignment before classification." },
+      { eyebrow: "Reported results", title: "Ensemble performance", body: "The supplied CV reports 97.93% accuracy, 98.04% specificity, and 95.89% sensitivity, with a 2.8% improvement over individual backbone models. Dataset and evaluation details were not supplied." },
+    ],
+    links: [],
+    featured: true,
+    order: 12,
+  },
 ];
 
 export const professionalExperience = featuredProjects.filter(
   (project) => project.workType === "professional-experience",
 );
 
+export const homepageProfessionalExperience = professionalExperience.filter((project) =>
+  ["moqi-collective-intelligence", "ebrd-agentic-ai", "cern-gofer"].includes(project.slug),
+);
+
 export const independentWork = featuredProjects.filter(
   (project) => project.workType === "independent-work",
+);
+
+export const homepageIndependentWork = independentWork.filter((project) =>
+  ["potato-leaf-disease", "multilingual-safety-alignment", "alzheimers-detection-ensembles"].includes(project.slug),
 );
 
 export const researchQuestions: ResearchQuestion[] = [
@@ -533,56 +635,10 @@ export const notes: ProjectNote[] = [
   },
 ];
 
-export const contextTrajectory: ContextTrajectory[] = [
-  {
-    step: "01",
-    context: "EBRD · London, United Kingdom · AI Engineer · Jul 2026–Present",
-    question: "How can multi-agent orchestration and tool-augmented LLMs automate enterprise knowledge work?",
-    technicalChoices: "The resume names multi-agent orchestration and tool-augmented LLMs for enterprise workflows; models, tools, and evaluation details are not disclosed.",
-    outcome: "Building agentic AI solutions for knowledge retrieval and decision-making; the resume lists no quantified outcome yet.",
-  },
-  {
-    step: "02",
-    context: "EBRD · London, United Kingdom · AI Intern · Aug 2025–Feb 2026",
-    question: "How can institutional documents support retrieval and structured extraction?",
-    technicalChoices: "RAG and extraction used Azure OpenAI, Azure AI Search, LlamaIndex, and Streamlit. Semantic chunking and contextual compression were proposed to improve retrieval.",
-    outcome: "Built RAG and structured-extraction pipelines for institutional document workflows.",
-  },
-  {
-    step: "03",
-    context: "CERN Openlab · Geneva, Switzerland · Technical Intern · Jun–Aug 2025",
-    question: "How can simulation services expose access, job state, and integration paths?",
-    technicalChoices: "Gofer included user quotas, role-based access control, job monitoring, OpenAPI client tools, and real-time job status for simulation workflows.",
-    outcome: "Built Gofer platform features, OpenAPI tools, client libraries, and real-time job status tracking.",
-  },
-  {
-    step: "04",
-    context: "AIAssistant.co · California, United States (Remote) · SDE Intern · Feb 2024–May 2025",
-    question: "How can production voice integrations improve responsiveness and speech naturalness?",
-    technicalChoices: "Production work used Python, Flask, and PostgreSQL; voice integrations used FastAPI. TTS acoustic-model, prosody, and synthesis tuning were separately listed contributions.",
-    outcome: "Built voice assistant APIs and contributed to text-to-speech quality.",
-  },
-  {
-    step: "05",
-    context: "Infosys Springboard Internship · Remote · AI Intern · May–Jul 2024",
-    question: "How can tweet classification support crisis management teams?",
-    technicalChoices: "The project applied NLP-based machine-learning classification to social media posts; the resume does not name the model or evaluation method.",
-    outcome: "The classification work supported crisis-management situational awareness.",
-  },
-  {
-    step: "06",
-    context: "Independent research projects · locations not specified",
-    question: "How do AI methods map to different research tasks?",
-    technicalChoices: "The listed projects use CNN comparison for potato leaf disease, DeepLabV3+ with ResNet-50 for CamVid segmentation, and an LSTM for MIDI music generation. Their project locations are not specified.",
-    outcome: "The potato-leaf study was published in Expert Systems with Applications; segmentation and music-generation results are recorded on their project pages.",
-  },
-];
-
 export const portfolioContent = {
   atlasNodes,
   atlasEdges,
   projects: featuredProjects,
   questions: researchQuestions,
   notes,
-  contextTrajectory,
 };
