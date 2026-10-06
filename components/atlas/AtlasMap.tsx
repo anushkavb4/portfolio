@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { atlasNodes, featuredProjects, researchQuestions } from "@/data/resume-atlas";
+import { getProjectHref } from "@/lib/project-routes";
 
 const positions = [
   { left: "18%", top: "39%" },
@@ -21,7 +22,7 @@ export function AtlasMap() {
   );
   const relatedContent = selectedNode?.relatedSlugs.map((slug) => {
     const project = featuredProjects.find((item) => item.slug === slug);
-    if (project) return { label: project.name, href: `/work/${project.slug}` };
+    if (project) return { label: project.name, href: getProjectHref(project) };
 
     const question = researchQuestions.find((item) => item.slug === slug);
     if (question) return { label: question.title, href: `/questions#${question.slug}` };

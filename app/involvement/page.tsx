@@ -7,10 +7,10 @@ export default function InvolvementPage() {
     <main className="page-shell">
       <section className="section involvement-page" aria-labelledby="involvement-title">
         <header className="section-heading">
-          <p className="eyebrow">Beyond technical work</p>
-          <h1 id="involvement-title">Leadership & involvement</h1>
+          <p className="eyebrow">Beyond academics</p>
+          <h1 id="involvement-title">Extracurriculars</h1>
           <p className="section-intro">
-            Organizing, editing, mentoring, and making things happen with people across campus.
+            Campus leadership and service, music teaching, arts, and creative practice.
           </p>
         </header>
 
@@ -33,6 +33,20 @@ export default function InvolvementPage() {
             </section>
           ))}
         </div>
+
+        <section className="involvement-group" aria-labelledby="extracurricular-qualifications-title">
+          <h2 className="eyebrow" id="extracurricular-qualifications-title">Music & art qualifications</h2>
+          <ul className="involvement-list">
+            {profile.extracurricularQualifications.map((qualification) => (
+              <li key={qualification.name} className="involvement-row qualification-row">
+                <div>
+                  <h3>{qualification.name}</h3>
+                  <p className="involvement-role">{qualification.achievement}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
       </section>
     </main>
   );

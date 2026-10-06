@@ -14,6 +14,7 @@ import {
 } from "../data/resume-atlas";
 import { buildSearchIndex, filterSearchEntries, getSearchFacets } from "../lib/search";
 import { profile } from "../data/profile";
+import { getProjectHref } from "../lib/project-routes";
 
 const entries = buildSearchIndex(featuredProjects, researchQuestions, notes);
 
@@ -57,14 +58,38 @@ test("content slugs and atlas relationships resolve", () => {
   }
 });
 
+test("IEvD sentiment-analysis work links to its published evaluation", () => {
+  const project = featuredProjects.find((item) => item.slug === "ebrd-ievd-sentiment-analysis");
+
+  assert.ok(project);
+  assert.equal(project.organization, "EBRD, Independent Evaluation Department (IEvD)");
+  assert.equal(project.role, "AI Intern");
+  assert.ok(project.systems.includes("Sentiment analysis"));
+  assert.ok(project.systems.includes("LessonsBot"));
+  assert.ok(project.summary.includes("users outside the Bank"));
+  assert.equal(
+    project.links[0]?.url,
+    "https://www.ebrd.com/home/news-and-events/publications/evaluation/flying-together-economies-more-advanced-in-transition.html",
+  );
+  assert.ok(entries.some((entry) => entry.slug === project.slug && entry.href === getProjectHref(project)));
+  assert.ok(atlasNodes.some((node) => node.relatedSlugs.includes(project.slug)));
+});
+
+test("professional work and independent projects use separate detail routes", () => {
+  assert.equal(getProjectHref(featuredProjects.find((project) => project.slug === "ebrd-rag")!), "/work/ebrd-rag");
+  assert.equal(getProjectHref(featuredProjects.find((project) => project.slug === "multilingual-safety-alignment")!), "/projects/multilingual-safety-alignment");
+});
+
 test("indexed content maps to existing project, question, and note routes", () => {
   assert.ok(existsSync("app/work/[slug]/page.tsx"));
+  assert.ok(existsSync("app/projects/page.tsx"));
+  assert.ok(existsSync("app/projects/[slug]/page.tsx"));
   assert.ok(existsSync("app/questions/page.tsx"));
   assert.ok(existsSync("app/notes/[slug]/page.tsx"));
   assert.ok(existsSync("app/search/page.tsx"));
 
   for (const project of featuredProjects) {
-    assert.ok(entries.some((entry) => entry.kind === "project" && entry.href === `/work/${project.slug}`));
+    assert.ok(entries.some((entry) => entry.kind === "project" && entry.href === getProjectHref(project)));
   }
   for (const question of researchQuestions) {
     assert.ok(entries.some((entry) => entry.kind === "question" && entry.href === `/questions#${question.slug}`));
@@ -116,10 +141,19 @@ test("filters intersect and clearing filters returns every record", () => {
   assert.equal(filterSearchEntries(entries, {}).length, entries.length);
 });
 
-test("leadership and campus involvement has a dedicated page", () => {
+test("extracurriculars include campus roles and arts qualifications", () => {
   assert.ok(existsSync("app/involvement/page.tsx"));
   assert.ok(profile.involvement.length > 0);
   assert.ok(profile.involvement.some((item) => item.organization.includes("Student Activity Council")));
+  assert.ok(profile.involvement.some((item) =>
+    item.role === "Music teacher"
+    && item.period === "Aug 2022 – Mar 2023"
+    && item.summary === "Taught music theory, piano, and guitar.",
+  ));
+  assert.deepEqual(
+    profile.extracurricularQualifications.map((qualification) => qualification.achievement),
+    ["Completed Grades 1–8", "A grade"],
+  );
 });
 
 test("homepage highlights current roles and recent independent research", () => {

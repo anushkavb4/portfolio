@@ -70,5 +70,22 @@ export const profile = {
       period: "2023 – 2025",
       summary: "Helped organize and run campus cultural events.",
     },
+    {
+      group: "Music & arts",
+      organization: "Music teaching",
+      role: "Music teacher",
+      period: "Aug 2022 – Mar 2023",
+      summary: "Taught music theory, piano, and guitar.",
+    },
+  ],
+  extracurricularQualifications: [
+    {
+      name: "Trinity music theory",
+      achievement: "Completed Grades 1–8",
+    },
+    {
+      name: "Elementary and Intermediate Art Examinations",
+      achievement: "A grade",
+    },
   ],
 };

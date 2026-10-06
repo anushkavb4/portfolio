@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { atlasEdges, atlasNodes, featuredProjects, researchQuestions } from "@/data/resume-atlas";
+import { getProjectHref } from "@/lib/project-routes";
 
 const kinds = ["all", "problem", "system", "context", "project", "question"] as const;
 
@@ -81,7 +82,7 @@ export default function AtlasPage() {
               <p className="eyebrow">Related projects</p>
               <ul>
                 {relatedProjects.map((project) => (
-                  <li key={project.slug}><Link href={`/work/${project.slug}`}>{project.name}</Link></li>
+                  <li key={project.slug}><Link href={getProjectHref(project)}>{project.name}</Link></li>
                 ))}
                 {relatedProjects.length === 0 && <li>No related projects for these nodes.</li>}
               </ul>

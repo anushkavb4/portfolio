@@ -1,4 +1,5 @@
 import type { PortfolioProject, ProjectNote, ResearchQuestion } from "../data/resume-atlas";
+import { getProjectHref } from "./project-routes";
 
 export type SearchContentKind = "project" | "question" | "note";
 
@@ -47,7 +48,7 @@ export function buildSearchIndex(
     kind: "project",
     title: project.name,
     summary: project.summary,
-    href: `/work/${project.slug}`,
+    href: getProjectHref(project),
     systems: project.systems,
     contexts: project.contexts,
     domains: [project.category],

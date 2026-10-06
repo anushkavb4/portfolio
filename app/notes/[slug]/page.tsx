@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SectionBlock } from "@/components/content/SectionBlock";
 import { featuredProjects, notes, researchQuestions } from "@/data/resume-atlas";
+import { getProjectHref } from "@/lib/project-routes";
 
 export default async function NoteDetailPage({
   params,
@@ -29,7 +30,7 @@ export default async function NoteDetailPage({
           <p>{note.summary}</p>
           <p>
             <strong>Related project:</strong>{" "}
-            {relatedProject ? <Link href={`/work/${relatedProject.slug}`}>{relatedProject.name}</Link> : "No related project linked."}
+            {relatedProject ? <Link href={getProjectHref(relatedProject)}>{relatedProject.name}</Link> : "No related project linked."}
           </p>
           <div className="project-links">
             <Link href="/notes" className="secondary-button">

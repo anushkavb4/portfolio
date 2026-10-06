@@ -6,6 +6,7 @@ import {
   researchQuestions,
 } from "@/data/resume-atlas";
 import { profile } from "@/data/profile";
+import { getProjectHref } from "@/lib/project-routes";
 
 export default function HomePage() {
   return (
@@ -79,7 +80,7 @@ export default function HomePage() {
           </div>
           <div className="home-project-grid">
             {homepageProfessionalExperience.map((project) => (
-              <Link key={project.slug} href={`/work/${project.slug}`} className="home-project">
+              <Link key={project.slug} href={getProjectHref(project)} className="home-project">
                 <span className="home-project-category">{project.organization}</span>
                 <span className="home-project-context">
                   {[project.role, project.period].filter((value) => value !== "Not specified").join(" · ")}
@@ -98,11 +99,11 @@ export default function HomePage() {
               <p className="eyebrow">Outside company roles</p>
               <h2 id="independent-work-title">Independent projects & research</h2>
             </div>
-            <Link href="/work" className="section-link">All work <span aria-hidden="true">→</span></Link>
+            <Link href="/projects" className="section-link">All projects <span aria-hidden="true">→</span></Link>
           </div>
           <div className="home-project-grid">
             {homepageIndependentWork.map((project) => (
-              <Link key={project.slug} href={`/work/${project.slug}`} className="home-project">
+              <Link key={project.slug} href={getProjectHref(project)} className="home-project">
                 <span className="home-project-category">{project.category.replaceAll("-", " ")}</span>
                 <h3>{project.name}</h3>
                 <p>{project.shortTitle}</p>

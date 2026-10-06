@@ -6,12 +6,11 @@ import { profile } from "@/data/profile";
 
 const sections = [
   { label: "Home", href: "/" },
-  { label: "Atlas", href: "/atlas" },
   { label: "Work", href: "/work" },
+  { label: "Projects", href: "/projects" },
   { label: "Questions", href: "/questions" },
-  { label: "Notes", href: "/notes" },
   { label: "Search", href: "/search" },
-  { label: "Involvement", href: "/involvement" },
+  { label: "Extracurriculars", href: "/involvement" },
   { label: "Collaborate", href: "/collaborate" },
 ];
 

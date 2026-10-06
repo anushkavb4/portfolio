@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { featuredProjects, notes } from "@/data/resume-atlas";
+import { getProjectHref } from "@/lib/project-routes";
 
 export default function NotesPage() {
   return (
@@ -24,7 +25,7 @@ export default function NotesPage() {
                     <p>{note.summary}</p>
                     <p>
                       <strong>Related project:</strong>{" "}
-                      {project ? <Link href={`/work/${project.slug}`}>{project.name}</Link> : "No related project linked."}
+                      {project ? <Link href={getProjectHref(project)}>{project.name}</Link> : "No related project linked."}
                     </p>
                     <div className="project-links">
                       <Link href={`/notes/${note.slug}`} className="secondary-button">Read note</Link>

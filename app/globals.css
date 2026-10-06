@@ -1137,6 +1137,18 @@ h1, h2, h3, h4 {
   font-size: 0.85rem;
 }
 
+.work-subgroup + .work-subgroup {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.work-subgroup-heading {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
 .home-project-group + .home-project-group {
   margin-top: 1.5rem;
   padding-top: 3rem;
@@ -1206,6 +1218,10 @@ h1, h2, h3, h4 {
   gap: 2rem;
   padding: 1.25rem 0;
   border-bottom: 1px solid var(--line);
+}
+
+.qualification-row {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .involvement-row h3 {

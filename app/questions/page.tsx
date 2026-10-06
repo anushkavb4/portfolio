@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { featuredProjects, notes, researchQuestions } from "@/data/resume-atlas";
+import { getProjectHref } from "@/lib/project-routes";
 
 export default function QuestionsPage() {
   return (
@@ -27,7 +28,7 @@ export default function QuestionsPage() {
                     <div className="related-inline">
                       <strong>Related work:</strong>
                       {relatedProjects.map((project) => (
-                        <Link href={`/work/${project.slug}`} key={project.slug}>{project.name}</Link>
+                        <Link href={getProjectHref(project)} key={project.slug}>{project.name}</Link>
                       ))}
                       {relatedNotes.map((note) => (
                         <Link href={`/notes/${note.slug}`} key={note.slug}>{note.title}</Link>
